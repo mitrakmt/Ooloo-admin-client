@@ -1,0 +1,40 @@
+@import '../../../../styles/variables';
+
+.sentPasswordContainer {
+  margin-top: 22vh;
+
+  &-link {
+    .resend-text-button {
+      font-size: 13px;
+      font-weight: 400;
+      margin-bottom: 0;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      a {
+        color: blue;
+        outline: none;
+      }
+    }
+  }
+
+  &-formContainer {
+    &-header {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    &-subHeader {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    img {
+      height: 123px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import 'node_modules/include-media/dist/_include-media.scss';
+
+// For include-media queries
+$breakpoints: (
+  'phone': 320px,
+  'iphone': 375px,
+  'iphoneplus': 414px,
+  'tablet': 768px,
+  'desktop': 1024px
+);

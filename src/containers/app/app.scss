@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+html, body, .app, .app-container {
+    height: 95vh;
+    min-height: 100%;
+
+    background: #50a3a2;
+    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.divider {
+  color: #6E6E6E;
+  font-weight: 300;
+  margin-left: 5px;
+  margin-right: 5px;
+}
