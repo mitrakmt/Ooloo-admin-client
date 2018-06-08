@@ -60,13 +60,22 @@ class Interests extends Component {
             })
     }
 
-    deleteInterest = (event) => {
-        deleteInterest(event.target.id)
+    deleteInterest = (id, index) => {
+        // search through and remove in UI
+        let originalInterests = this.state.interests
+        let copied = this.state.interests.slice()
+        copied.splice(index, 1)
+        this.setState({
+            interests: copied
+        })
+        deleteInterest(id)
             .then(res => {
                 if (res.error) {
+                    this.setState({
+                        interests: originalInterests
+                    })
                     return;
                 }
-                this.getInterests()
             })
     }
 
@@ -111,10 +120,10 @@ class Interests extends Component {
             }
             <div className="interests-listContainer">
                 {
-                    this.state.interests.map(interest => (
-                        <div className="interests-listContainer-interestContainer">
+                    this.state.interests.map((interest, index) => (
+                        <div className="interests-listContainer-interestContainer" key={`interestsList-${interest.id}${interest.name}`}>
                             <h3 className="interests-listContainer-interestContainer-name">{ interest.name }</h3>
-                            <h3 id={interest.id} className="interests-listContainer-interestContainer-delete" onClick={this.deleteInterest}>x</h3>
+                            <h3 className="interests-listContainer-interestContainer-delete" onClick={() => {this.deleteInterest(interest.id, index)}}>x</h3>
                         </div>
                     ))
                 }
