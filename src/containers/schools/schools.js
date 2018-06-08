@@ -75,7 +75,7 @@ class Schools extends Component {
 
     deleteSchool = (id, index) => {
         // search through and remove in UI
-        let original = this.state.original
+        let original = this.state.schools
         let copied = this.state.schools.slice()
         copied.splice(index, 1)
         this.setState({
