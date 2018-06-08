@@ -5917,7 +5917,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.6.0, prop-types@^15.6.1:
+prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -6087,6 +6087,12 @@ react-dom@^16.4.0:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-filtered-multiselect@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-filtered-multiselect/-/react-filtered-multiselect-0.5.1.tgz#cf825395864159631c8615b6786ceebd6139f4ae"
+  dependencies:
+    prop-types "^15.5.7"
 
 react-fontawesome@^1.6.1:
   version "1.6.1"
