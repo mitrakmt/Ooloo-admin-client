@@ -2,50 +2,126 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getInterests } from 'utils/interests';
+import { getInterests, addInterest, deleteInterest } from 'utils/interests';
 
 import './interests.css';
 
 class Interests extends Component {
-  static defaultProps = {
-    user: null
-  }
+    static defaultProps = {
+        user: null
+    }
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
-  }
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired,
+        location: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired
+    }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-  }
+    static contextTypes = {
+        router: PropTypes.object.isRequired,
+        store: PropTypes.object.isRequired
+    }
 
-  constructor(props, context) {
-    super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-    this.state = {
-        interests: []
-    };
-  }
+        this.state = {
+            interests: [],
+            newInterest: '',
+            showAddContainer: false
+        };
+    }
 
-  componentWillMount() {
-    getInterests()
-        .then(interests => {
-            this.setState({
-                interests
+    componentWillMount() {
+        this.getInterests()
+    }
+
+    getInterests = () => {
+        getInterests()
+            .then(interests => {
+                this.setState({
+                    interests,
+                    newInterest: ''
+                })
             })
-        })
-  }
+    }
 
-  render() {
-    return (
-      <div className="interests"> 
-        <h1>Interests</h1>
-      </div>
-    );
-  }
+    addInterest = () => {
+        let interest = this.state.newInterest
+        if (!interest) {
+            return;
+        }
+        addInterest(interest)
+            .then(res => {
+                if (res.error) {
+                    return;
+                }
+                this.getInterests()
+            })
+    }
+
+    deleteInterest = (event) => {
+        deleteInterest(event.target.id)
+            .then(res => {
+                if (res.error) {
+                    return;
+                }
+                this.getInterests()
+            })
+    }
+
+    showAddContainer = () => {
+        this.setState({
+            showAddContainer: !this.state.showAddContainer
+        })
+    }
+
+    updateState = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value
+        })
+    }
+
+    /**
+        * Key listener to login on 'enter'
+     */
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.addInterest()
+        }
+    }
+
+    render() {
+        return (
+        <div className="interests">
+            <div className="interests-container">
+                <div className="interests-headerContainer">
+                    <h1 className="interests-headerContainer-title">Interests</h1>
+                </div>
+                <div className="interests-addButtonContainer">
+                    <h2 className="interests-addButtonContainer-icon" onClick={this.showAddContainer}>{ this.state.showAddContainer ? 'x' : '+' }</h2>
+                </div>
+            </div>
+            {
+                this.state.showAddContainer &&
+                    <div className="interests-addContainer">
+                        <input className="interests-addContainer-input" id="newInterest" onChange={this.updateState} value={this.state.newInterest} onKeyPress={this.handleKeyPress} />
+                        <button className="interests-addContainer-button" onClick={this.addInterest}>Submit</button>
+                    </div>
+            }
+            <div className="interests-listContainer">
+                {
+                    this.state.interests.map(interest => (
+                        <div className="interests-listContainer-interestContainer">
+                            <h3 className="interests-listContainer-interestContainer-name">{ interest.name }</h3>
+                            <h3 id={interest.id} className="interests-listContainer-interestContainer-delete" onClick={this.deleteInterest}>x</h3>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+        );
+    }
 }
 
 function mapStateToProps({ auth }) {
