@@ -4,11 +4,7 @@ html, body, .app, .app-container {
     height: 95vh;
     min-height: 100%;
 
-    background: #50a3a2;
-    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+    background: linear-gradient(135deg, rgba(250,249,247,1) 0%,rgba(221,218,209,1) 100%);
 }
 
 .divider {

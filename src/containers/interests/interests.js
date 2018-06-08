@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getInterests, addInterest, deleteInterest } from 'utils/interests';
+import ListTitle from 'shared-components/list-title/listTitle';
 
 import './interests.css';
 
@@ -28,7 +29,7 @@ class Interests extends Component {
         this.state = {
             interests: [],
             newInterest: '',
-            showAddContainer: false
+            showAddContainerStatus: false
         };
     }
 
@@ -81,7 +82,7 @@ class Interests extends Component {
 
     showAddContainer = () => {
         this.setState({
-            showAddContainer: !this.state.showAddContainer
+            showAddContainerStatus: !this.state.showAddContainerStatus
         })
     }
 
@@ -102,33 +103,26 @@ class Interests extends Component {
 
     render() {
         return (
-        <div className="interests">
-            <div className="interests-container">
-                <div className="interests-headerContainer">
-                    <h1 className="interests-headerContainer-title">Interests</h1>
-                </div>
-                <div className="interests-addButtonContainer">
-                    <h2 className="interests-addButtonContainer-icon" onClick={this.showAddContainer}>{ this.state.showAddContainer ? 'x' : '+' }</h2>
-                </div>
-            </div>
-            {
-                this.state.showAddContainer &&
-                    <div className="interests-addContainer">
-                        <input className="interests-addContainer-input" id="newInterest" onChange={this.updateState} value={this.state.newInterest} onKeyPress={this.handleKeyPress} />
-                        <button className="interests-addContainer-button" onClick={this.addInterest}>Submit</button>
-                    </div>
-            }
-            <div className="interests-listContainer">
+            <div className="interests">
+                <ListTitle showAddContainer={this.showAddContainer} showAddContainerStatus={this.state.showAddContainerStatus} title="Interests" />
                 {
-                    this.state.interests.map((interest, index) => (
-                        <div className="interests-listContainer-interestContainer" key={`interestsList-${interest.id}${interest.name}`}>
-                            <h3 className="interests-listContainer-interestContainer-name">{ interest.name }</h3>
-                            <h3 className="interests-listContainer-interestContainer-delete" onClick={() => {this.deleteInterest(interest.id, index)}}>x</h3>
+                    this.state.showAddContainerStatus &&
+                        <div className="interests-addContainer">
+                            <input className="interests-addContainer-input" id="newInterest" onChange={this.updateState} value={this.state.newInterest} onKeyPress={this.handleKeyPress} />
+                            <button className="interests-addContainer-button" onClick={this.addInterest}>Submit</button>
                         </div>
-                    ))
                 }
+                <div className="interests-listContainer">
+                    {
+                        this.state.interests.map((interest, index) => (
+                            <div className="interests-listContainer-interestContainer" key={`interestsList-${interest.id}${interest.name}`}>
+                                <h3 className="interests-listContainer-interestContainer-name">{ interest.name }</h3>
+                                <h3 className="interests-listContainer-interestContainer-delete" onClick={() => {this.deleteInterest(interest.id, index)}}>x</h3>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-        </div>
         );
     }
 }

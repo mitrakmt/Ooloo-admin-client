@@ -1,52 +1,4 @@
 .interests {
-    &-container {
-        display: flex;
-        justify-content: center;
-    }
-    &-headerContainer {
-        width: 430px;
-        height: 60px;
-        background: rgb(42,72,107);
-        background: -moz-linear-gradient(left,  rgba(42,72,107,1) 0%, rgba(80,122,167,1) 100%);
-        background: -webkit-linear-gradient(left,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%);
-        background: linear-gradient(to right,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a486b', endColorstr='#507aa7',GradientType=1 );
-        font-family: 'Open Sans', sans-serif;
-        margin-bottom: 20px;
-        margin-top: 50px;
-        border-radius: 2px;
-
-        &-title {
-            text-align: left;
-            margin-left: 25px;
-            letter-spacing:7px;
-            font-size: 12px;
-            color: #fff;
-            font-weight: 400;
-            margin-top: 23px;
-        }
-    }
-    &-addButtonContainer {
-        width: 70px;
-        height: 60px;
-        background: rgb(42,72,107);
-        background: -moz-linear-gradient(left,  rgba(42,72,107,1) 0%, rgba(80,122,167,1) 100%);
-        background: -webkit-linear-gradient(left,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%);
-        background: linear-gradient(to right,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a486b', endColorstr='#507aa7',GradientType=1 );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        margin-top: 50px;
-        border-radius: 2px;
-        cursor: pointer;
-        transition-duration: 0.4s;
-
-        &-icon {
-            margin: 0;
-        }
-    }
     &-addContainer {
         display: flex;
         align-items: center;
@@ -83,7 +35,7 @@
             display: flex;
             height: 75px;
             background-color: #F1F1EF;
-            box-shadow: 1px 2px 10px 0px rgba(22, 19, 10, 0.8);
+            box-shadow: 1px 10px 20px 0px rgba(218, 215, 206,0.8);
             z-index: 2;
             -webkit-transition: all 0.5s;
             -o-transition: all 0.5s;
