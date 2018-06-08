@@ -30,8 +30,8 @@ class Header extends Component {
     }
 
     logout = () => {
-        this.props.dispatch(logout())
         this.props.dispatch(clearUserInfo())
+        this.props.dispatch(logout())
         this.context.router.history.push("/");
     }
 

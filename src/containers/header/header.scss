@@ -19,6 +19,7 @@
 
     &-navLinks {
         display: flex;
+        align-items: center;
 
         &-row {
             display: flex;
@@ -39,7 +40,6 @@
             border-radius: 5px;
 
             &:hover {
-                // color: #50a3a2;
                 background-color: rgba(117,117,117, 0.08);
             }
         }
