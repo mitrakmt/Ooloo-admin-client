@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getUserInfo, saveUserInfo } from 'actions/user';
+import { getSchools } from 'utils/schools';
+
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css'
 
 import './profile.css';
-
 
 class Profile extends Component {
   static defaultProps = {
@@ -31,7 +34,9 @@ class Profile extends Component {
       email: '',
       gender: '',
       username: '',
-      university: ''
+      university: '',
+      universityId: null,
+      availableUniversities: []
     };
   }
 
@@ -41,6 +46,20 @@ class Profile extends Component {
         let user = this.props.user.data;
         this.setState(user)
       })
+
+      getSchools()
+        .then(universities => {
+          let availableUniversities = []
+          for (let i = 0; i < universities.length; i++) {
+            availableUniversities.push({
+              label: universities[i].name,
+              value: universities[i].id
+            })
+          }
+          this.setState({
+            availableUniversities
+          })
+      })
   }
 
   updateState = (event) => {
@@ -49,12 +68,18 @@ class Profile extends Component {
     })
   }
 
+  updateUniversity = (university) => {
+    this.setState({
+      universityId: university.id
+    })
+  }
+
   saveInfo = () => {
     let userInfo = {
       name: this.state.name,
       gender: this.state.gender,
       username: this.state.username,
-      university: this.state.university
+      university: this.state.universityId
     }
     this.props.dispatch(saveUserInfo(userInfo))
   }
@@ -68,7 +93,7 @@ class Profile extends Component {
           <input className="account-container-input" id="email" placeholder="email" value={this.state.email || ''} disabled />
           <input className="account-container-input" id="gender" placeholder="gender" value={this.state.gender || ''} onChange={this.updateState} />
           <input className="account-container-input" id="username" placeholder="username" value={this.state.username || ''} disabled />
-          <input className="account-container-input" id="university" placeholder="university" value={this.state.university || ''} onChange={this.updateState} />
+          <Dropdown className="account-container-dropdown" options={this.state.availableUniversities} id="university" onChange={this.updateUniversity} value={this.state.university || 'Select an option'} controlClassName='account-container-dropdown-control' menuClassName='account-container-dropdown-menu' placeholder="Select an option" />
           <button className="account-container-submitButton" onClick={this.saveInfo}>Save</button>
         </div>
       </div>

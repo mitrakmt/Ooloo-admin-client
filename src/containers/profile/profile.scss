@@ -19,6 +19,40 @@
              }
          }
 
+         &-dropdown {
+            padding: 10px 20px;
+            font-size: 14px;
+            width: 440px;
+            border-radius: 5px;
+            outline: none;
+            transition-duration: 0.3s;
+            &:focus {
+               border: 1px solid #2ADBA7;
+            }
+
+            &-control {
+                display: flex;
+                align-items: center;
+                height: 60px;
+                padding: 10px 20px;
+                border: 1px solid #eceff5;
+                font-size: 14px;
+                border-radius: 5px;
+                outline: none;
+                transition-duration: 0.3s;
+            }
+
+            &-menu {
+                height: 40px;
+                border: 1px solid #eceff5;
+                font-size: 14px;
+                width: 440px;
+                border-radius: 5px;
+                outline: none;
+                transition-duration: 0.3s;
+            }
+         }
+
          &-submitButton {
             padding: 20px;
             border: 1px solid #DAE9EE;
