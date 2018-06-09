@@ -45,6 +45,8 @@ export function request(configObject) {
     config.headers = {};
   }
   config.headers.Authorization = `${token}`;
+  config.headers.Accept = 'application/json';
+  config.headers['Content-Type'] = 'application/json';
 
   return axios.request(config)
     .then(res => res.data)

@@ -1,87 +1,99 @@
 .admins {
-    &-addContainer {
+  &-addContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+
+    &-input {
+      width: 320px;
+      height: 35px;
+      border-radius: 5px;
+      padding: 5px 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    &-button {
+      width: 80px;
+      height: 48px;
+      margin: 10px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      outline: 0;
+    }
+  }
+  &-listContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    &-adminContainer {
+      display: flex;
+      height: 75px;
+      background-color: #f1f1ef;
+      box-shadow: 1px 10px 20px 0px rgba(218, 215, 206, 0.8);
+      z-index: 2;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+      width: 500px;
+      margin: 10px;
+      align-items: center;
+      border-radius: 5px;
+
+      &-name {
+        border-left: 3px solid #e45;
+        color: #e45;
+        padding-left: 15px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        height: 20px;
+        align-items: center;
+      }
+
+      &-info {
+        margin: 0;
+        margin-left: 20px;
+        font-size: 12px;
+        margin-top: -10px;
+      }
+
+      &-delete {
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 20px;
+        background: #f1f1ef;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        transition-duration: 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 10px;
-
-        &-input {
-            width: 320px;
-            height: 35px;
-            border-radius: 5px;
-            padding: 5px 15px;
-            font-size: 16px;
-            outline: none;
+        &:hover {
+          background: rgb(42, 72, 107);
+          background: -moz-linear-gradient(
+            left,
+            rgba(42, 72, 107, 1) 0%,
+            rgba(80, 122, 167, 1) 100%
+          );
+          background: -webkit-linear-gradient(
+            left,
+            rgba(42, 72, 107, 1) 0%,
+            rgba(80, 122, 167, 1) 100%
+          );
+          background: linear-gradient(
+            to right,
+            rgba(42, 72, 107, 1) 0%,
+            rgba(80, 122, 167, 1) 100%
+          );
+          color: #f1f1ef;
         }
-
-        &-button {
-            width: 80px;
-            height: 48px;
-            margin: 10px 20px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            outline:0;
-        }
+      }
     }
-    &-listContainer {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-
-        &-adminContainer {
-            display: flex;
-            height: 75px;
-            background-color: #F1F1EF;
-            box-shadow: 1px 10px 20px 0px rgba(218, 215, 206,0.8);
-            z-index: 2;
-            -webkit-transition: all 0.5s;
-            -o-transition: all 0.5s;
-            transition: all 0.5s;
-            width: 500px;
-            margin: 10px;
-            align-items: center;
-            border-radius: 5px;
-
-            &-name {
-                border-left: 3px solid #e45;
-                color: #e45;
-                padding-left: 15px;
-                font-family: 'Open Sans', sans-serif;
-                font-size: 14px;
-                height: 20px;
-                align-items: center;
-            }
-
-            &-info {
-                margin: 0;
-                margin-left: 20px;
-                font-size: 12px;
-                margin-top: -10px;
-            }
-    
-            &-delete {
-                cursor: pointer;
-                margin-left: auto;
-                margin-right: 20px;
-                background: #F1F1EF;
-                height: 30px;
-                width: 30px;
-                border-radius: 50%;
-                transition-duration: 0.2s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &:hover {
-                    background: rgb(42,72,107);
-                    background: -moz-linear-gradient(left,  rgba(42,72,107,1) 0%, rgba(80,122,167,1) 100%);
-                    background: -webkit-linear-gradient(left,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%);
-                    background: linear-gradient(to right,  rgba(42,72,107,1) 0%,rgba(80,122,167,1) 100%); 
-                    color: #F1F1EF;
-                }
-            }
-        }
-    }
+  }
 }
