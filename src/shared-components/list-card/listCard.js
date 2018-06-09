@@ -2,8 +2,6 @@ import React from 'react';
 
 import './listCard.css';
 
-const ListCard = ({ name, deleteFunction, title}) => (
-    <div></div>
-);
+const ListCard = ({ name, deleteFunction, title }) => <div />;
 
 export default ListCard;

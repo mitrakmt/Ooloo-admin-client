@@ -1,15 +1,15 @@
 /**
  * Contents
  */
-import _omitBy from "lodash/omitBy";
-import _isNil from "lodash/isNil";
-import { callApiWithJWT } from "../utils/api";
+import _omitBy from 'lodash/omitBy';
+import _isNil from 'lodash/isNil';
+import { callApiWithJWT } from 'utils/api';
 
-export const POST_USER_REQUEST = "POST_USER_REQUEST";
-export const POST_USER_SUCCESS = "POST_USER_SUCCESS";
-export const POST_USER_FAILURE = "POST_USER_FAILURE";
-export const SAVE_USER_SUCCESS = "SAVE_USER_SUCCESS";
-export const CLEAR_USER = "CLEAR_USER";
+export const POST_USER_REQUEST = 'POST_USER_REQUEST';
+export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
+export const POST_USER_FAILURE = 'POST_USER_FAILURE';
+export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
+export const CLEAR_USER = 'CLEAR_USER';
 
 /**
  * Updates the user's info.
@@ -18,33 +18,23 @@ export const CLEAR_USER = "CLEAR_USER";
  */
 export function saveUserInfo({ ...userInfo }) {
   // Remove any null, undefined, or empty strings from the request object
-  const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === "");
+  const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === '');
   const config = {
-    url: "/user",
-    method: "put",
+    url: '/user',
+    method: 'put',
     data: strippedObject
   };
 
-  return callApiWithJWT(
-    config,
-    userInfoRequest,
-    userInfoSuccess,
-    userInfoFailure
-  );
+  return callApiWithJWT(config, userInfoRequest, userInfoSuccess, userInfoFailure);
 }
 
 export function getUserInfo() {
   const config = {
-    url: "/user",
-    method: "GET"
+    url: '/user',
+    method: 'GET'
   };
 
-  return callApiWithJWT(
-    config,
-    userInfoRequest,
-    userInfoSuccess,
-    userInfoFailure
-  );
+  return callApiWithJWT(config, userInfoRequest, userInfoSuccess, userInfoFailure);
 }
 
 export function clearUserInfo() {

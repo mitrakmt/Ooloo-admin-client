@@ -13,7 +13,7 @@ import {
   removeTokens,
   setAccessToken,
   setUserId
-} from '../utils/api';
+} from 'utils/api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -98,12 +98,7 @@ export function refreshLogin(refresh_token = loadRefreshToken()) {
     }
   };
 
-  return callApi(
-    config,
-    loginRequest(refresh_token),
-    loginSuccess,
-    loginFailure
-  );
+  return callApi(config, loginRequest(refresh_token), loginSuccess, loginFailure);
 }
 
 function logoutRequest() {

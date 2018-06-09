@@ -1,38 +1,23 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { getAdmins, addAdmin } from "utils/admins";
+import { getAdmins, addAdmin } from 'utils/admins';
 
-import ListTitle from "shared-components/list-title/listTitle";
+import ListTitle from 'shared-components/list-title/listTitle';
 
-import "./admins.css";
+import './admins.css';
 
 class Admins extends Component {
-  static defaultProps = {
-    user: null
-  };
-
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
-  };
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-  };
-
   constructor(props, context) {
     super(props, context);
 
     this.state = {
       admins: [],
-      email: "",
-      username: "",
-      password: "",
-      adminPassword: ""
+      email: '',
+      username: '',
+      password: '',
+      adminPassword: ''
     };
   }
 
@@ -48,10 +33,10 @@ class Admins extends Component {
     getAdmins().then(admins => {
       this.setState({
         admins,
-        email: "",
-        password: "",
-        username: "",
-        adminPassword: ""
+        email: '',
+        password: '',
+        username: '',
+        adminPassword: ''
       });
     });
   };
@@ -63,6 +48,7 @@ class Admins extends Component {
     let adminPassword = this.state.adminPassword;
 
     if (!email || !username || !password || !adminPassword) {
+      // TODO: show visual error
       return;
     }
     addAdmin(email, username, password, adminPassword).then(res => {
@@ -89,7 +75,7 @@ class Admins extends Component {
    * Key listener to login on 'enter'
    */
   handleKeyPress = e => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       this.addSchool();
     }
   };
@@ -107,58 +93,48 @@ class Admins extends Component {
             <div className="column">
               <input
                 className="admins-addContainer-input"
-                placeholder="Username"
                 id="username"
                 onChange={this.updateState}
+                placeholder="Username"
                 value={this.state.username}
               />
               <input
                 className="admins-addContainer-input"
-                placeholder="Email"
                 id="email"
                 onChange={this.updateState}
+                placeholder="Email"
                 value={this.state.email}
               />
               <input
                 className="admins-addContainer-input"
-                type="password"
-                placeholder="Password"
                 id="password"
                 onChange={this.updateState}
+                placeholder="Password"
+                type="password"
                 value={this.state.password}
               />
               <input
                 className="admins-addContainer-input"
-                type="password"
-                placeholder="Admin Password"
                 id="adminPassword"
                 onChange={this.updateState}
-                value={this.state.adminPassword}
                 onKeyPress={this.handleKeyPress}
+                placeholder="Admin Password"
+                type="password"
+                value={this.state.adminPassword}
               />
             </div>
-            <button
-              className="admins-addContainer-button"
-              onClick={this.addAdmin}
-            >
+            <button className="admins-addContainer-button" onClick={this.addAdmin}>
               Submit
             </button>
           </div>
         )}
         <div className="admins-listContainer">
           {this.state.admins.map((admin, index) => (
-            <div
-              className="admins-listContainer-adminContainer"
-              key={`adminsList-${admin.id}${admin.email}`}
-            >
+            <div className="admins-listContainer-adminContainer" key={`adminsList-${admin.id}${admin.email}`}>
               <div>
-                <h3 className="admins-listContainer-adminContainer-name">
-                  {admin.email}
-                </h3>
+                <h3 className="admins-listContainer-adminContainer-name">{admin.email}</h3>
                 <div className="row">
-                  <p className="admins-listContainer-adminContainer-info">
-                    {admin.username}
-                  </p>
+                  <p className="admins-listContainer-adminContainer-info">{admin.username}</p>
                 </div>
               </div>
             </div>
@@ -168,6 +144,21 @@ class Admins extends Component {
     );
   }
 }
+
+Admins.defaultProps = {
+  user: null
+};
+
+Admins.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+Admins.contextTypes = {
+  router: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
+};
 
 function mapStateToProps({ auth }) {
   return { auth };

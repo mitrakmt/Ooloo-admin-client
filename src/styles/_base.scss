@@ -1,10 +1,13 @@
 // Set the first few el's in the tree to
 // the full page height, so children will have a % base
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -21,7 +24,19 @@ a {
   width: 100%;
 }
 
+.text-center {
+  text-align: center;
+}
+
 // chrome autofill background color from yellow to white
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.color-warning {
+  color: red;
+}
+
+.color-positive {
+  color: green;
 }
