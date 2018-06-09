@@ -41,9 +41,9 @@ class EmailValidation extends Component {
   render() {
     return (
       <div className="emailValidation">
-        <h1>Email Validation</h1>
-        {this.state.verifying && <p>Verifying... be patient</p>}
-        {this.state.emailVerified && <p>Email Verified</p>}
+        <h1>Email Validation Status</h1>
+        {this.state.verifying && <p style={{ color: 'red' }}>Verifying... be patient</p>}
+        {this.state.emailVerified && <p style={{ color: 'green' }}>Email Verified</p>}
       </div>
     );
   }
