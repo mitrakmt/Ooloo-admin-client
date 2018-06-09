@@ -1,19 +1,17 @@
-$font-stack: 'Montserrat',
-sans-serif,
-'fontawesome';
+$font-stack: 'Montserrat', sans-serif, 'fontawesome';
 $primary-color: #333;
-$secondary-color: #CE2027;
-$tertiary-color: #157DFB;
-$body-color: #F5F5F5;
+$secondary-color: #ce2027;
+$tertiary-color: #157dfb;
+$body-color: #f5f5f5;
 $background-color: white;
-$statline-color: #B4B4B4;
-$statline-divider-color: #6E6E6E;
-$positive-color: #56D630;
-$warning-color: #AC1212;
+$statline-color: #b4b4b4;
+$statline-divider-color: #6e6e6e;
+$positive-color: #56d630;
+$warning-color: #ac1212;
 $flag-color: #c95155;
-$exit-color: #2A45BE;
+$exit-color: #2a45be;
 $transition: 0.2s;
-$disabled-color: #C7C7C7;
+$disabled-color: #c7c7c7;
 $subtitle-color: #ffb500;
 $button-transition-timing: 0.2s;
-$modal-transition: all .225s ease-out !default;
+$modal-transition: all 0.225s ease-out !default;

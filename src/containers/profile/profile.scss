@@ -1,76 +1,76 @@
 .account {
-    margin: 50px;
+  margin: 50px;
 
-    &-container {
-         display: flex;
-         flex-direction: column;
+  &-container {
+    display: flex;
+    flex-direction: column;
 
-         &-input {
-             padding: 20px;
-             border: 1px solid #eceff5;
-             font-size: 14px;
-             width: 400px;
-             margin: 10px 20px;
-             border-radius: 5px;
-             outline: none;
-             transition-duration: 0.3s;
-             &:focus {
-                border: 1px solid #2ADBA7;
-             }
-         }
-
-         &-info {
-             margin: 30px 20px;
-         }
-
-         &-dropdown {
-            padding: 10px 20px;
-            font-size: 14px;
-            width: 440px;
-            border-radius: 5px;
-            outline: none;
-            transition-duration: 0.3s;
-            &:focus {
-               border: 1px solid #2ADBA7;
-            }
-
-            &-control {
-                display: flex;
-                align-items: center;
-                height: 60px;
-                padding: 10px 20px;
-                border: 1px solid #eceff5;
-                font-size: 14px;
-                border-radius: 5px;
-                outline: none;
-                transition-duration: 0.3s;
-            }
-
-            &-menu {
-                border: 1px solid #eceff5;
-                font-size: 14px;
-                width: 440px;
-                border-radius: 5px;
-                outline: none;
-                transition-duration: 0.3s;
-            }
-         }
-
-         &-submitButton {
-            padding: 20px;
-            border: 1px solid #DAE9EE;
-            background-color: #2ADBA7;
-            font-size: 16px;
-            width: 440px;
-            margin: 20px;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            transition-duration: 0.3s;
-            &:hover {
-                color: #eceff5;
-                background-color: rgb(94, 226, 186);
-            }
-         }
+    &-input {
+      width: 400px;
+      font-size: 14px;
+      margin: 10px 20px;
+      padding: 20px;
+      border: 1px solid #eceff5;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      outline: none;
+      &:focus {
+        border: 1px solid #2adba7;
+      }
     }
+
+    &-info {
+      margin: 30px 20px;
+    }
+
+    &-dropdown {
+      width: 440px;
+      font-size: 14px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      outline: none;
+      &:focus {
+        border: 1px solid #2adba7;
+      }
+
+      &-control {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        font-size: 14px;
+        padding: 10px 20px;
+        border: 1px solid #eceff5;
+        border-radius: 5px;
+        transition-duration: 0.3s;
+        outline: none;
+      }
+
+      &-menu {
+        width: 440px;
+        font-size: 14px;
+        border: 1px solid #eceff5;
+        border-radius: 5px;
+        transition-duration: 0.3s;
+        outline: none;
+      }
+    }
+
+    &-submitButton {
+      width: 440px;
+      font-size: 16px;
+      color: white;
+      background-color: #2adba7;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #dae9ee;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: #eceff5;
+        background-color: rgb(94, 226, 186);
+      }
+    }
+  }
 }
