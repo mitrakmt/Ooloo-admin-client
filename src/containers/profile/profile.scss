@@ -19,6 +19,10 @@
              }
          }
 
+         &-info {
+             margin: 30px 20px;
+         }
+
          &-dropdown {
             padding: 10px 20px;
             font-size: 14px;
@@ -43,7 +47,6 @@
             }
 
             &-menu {
-                height: 40px;
                 border: 1px solid #eceff5;
                 font-size: 14px;
                 width: 440px;

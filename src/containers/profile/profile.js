@@ -42,12 +42,11 @@ class Profile extends Component {
 
   componentWillMount() {
     this.props.dispatch(getUserInfo(this.props.auth.profile.id))
-      .then(status => {
+      .then(() => {
         let user = this.props.user.data;
         this.setState(user)
-      })
 
-      getSchools()
+        getSchools()
         .then(universities => {
           let availableUniversities = []
           for (let i = 0; i < universities.length; i++) {
@@ -55,10 +54,16 @@ class Profile extends Component {
               label: universities[i].name,
               value: universities[i].id
             })
+            if (this.props.user.data.university === universities[i].id) {
+              this.setState({
+                university: universities[i].name
+              })
+            }
           }
           this.setState({
             availableUniversities
           })
+        })
       })
   }
 
@@ -70,7 +75,8 @@ class Profile extends Component {
 
   updateUniversity = (university) => {
     this.setState({
-      universityId: university.id
+      universityId: university.value,
+      university
     })
   }
 
@@ -90,10 +96,13 @@ class Profile extends Component {
         <h1>My Account</h1>
         <div className="account-container">
           <input className="account-container-input" id="name" placeholder="name" value={this.state.name || ''} onChange={this.updateState} />
-          <input className="account-container-input" id="email" placeholder="email" value={this.state.email || ''} disabled />
+          <div className="row">
+            <input className="account-container-input" id="email" placeholder="email" value={this.state.email || ''} disabled />
+            <h5 className="account-container-info" style={this.state.emailVerified ? {color: '#2ADBA7'} : {color: 'red'}}>Email { this.state.emailVerified ? ' ' : ' not '}verified</h5>
+          </div>
           <input className="account-container-input" id="gender" placeholder="gender" value={this.state.gender || ''} onChange={this.updateState} />
           <input className="account-container-input" id="username" placeholder="username" value={this.state.username || ''} disabled />
-          <Dropdown className="account-container-dropdown" options={this.state.availableUniversities} id="university" onChange={this.updateUniversity} value={this.state.university || 'Select an option'} controlClassName='account-container-dropdown-control' menuClassName='account-container-dropdown-menu' placeholder="Select an option" />
+          <Dropdown className="account-container-dropdown" options={this.state.availableUniversities} id="university" onChange={this.updateUniversity} value={this.state.university} controlClassName='account-container-dropdown-control' menuClassName='account-container-dropdown-menu' placeholder="Select an option" />
           <button className="account-container-submitButton" onClick={this.saveInfo}>Save</button>
         </div>
       </div>

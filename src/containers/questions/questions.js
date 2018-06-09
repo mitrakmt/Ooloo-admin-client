@@ -50,7 +50,7 @@ class Questions extends Component {
             .then(interests => {
                 let newInterests = {}
                 for (let i = 0; i < interests.length; i++) {
-                    newInterests[interests[0].id] = interests[0].name
+                    newInterests[interests[i].id] = interests[i].name
                 }
                 this.setState({
                     interests: newInterests,
@@ -208,11 +208,17 @@ class Questions extends Component {
                     {
                         this.state.questions.map((question, index) => (
                             <div className="questions-listContainer-questionContainer" key={`questionsList-${ question.id }`}>
-                                <div>
+                                <div className="fullWidth">
+                                    <h3 className="questions-listContainer-questionContainer-name">
+                                        Difficulty: {question.difficulty}
+                                    </h3>
                                     <h3 className="questions-listContainer-questionContainer-question">{question.question}</h3>
-                                    <h3 className="questions-listContainer-questionContainer-name">{
-                                        question.topics.map(topic => ( this.state.interests[topic] + ', ' ))
-                                    }</h3>
+                                    <h3 className="questions-listContainer-questionContainer-name">
+                                        Topics: 
+                                        {
+                                            question.topics.map(topic => ( ' ' + this.state.interests[topic] + ',' ))
+                                        }
+                                    </h3>
                                     <div className="row questions-listContainer-questionContainer-answers">
                                         {
                                             question.answers.map(answer => (

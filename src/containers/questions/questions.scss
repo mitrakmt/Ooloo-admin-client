@@ -197,6 +197,7 @@
             &-answers {
                 display: flex;
                 justify-content: space-between;
+                width: 100%;
                 padding: 0 20px;
 
                 h3 {
@@ -240,6 +241,7 @@
                 transition-duration: 0.2s;
                 display: flex;
                 align-items: center;
+
                 justify-content: center;
                 &:hover {
                     background: rgb(42,72,107);

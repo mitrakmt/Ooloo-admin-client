@@ -17,6 +17,10 @@ a {
   display: flex;
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 // chrome autofill background color from yellow to white
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
