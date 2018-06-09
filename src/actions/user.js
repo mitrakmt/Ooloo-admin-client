@@ -23,7 +23,7 @@ export function saveUserInfo({ ...userInfo }) {
   const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === '');
   const config = {
     url: '/user',
-    method: 'patch',
+    method: 'put',
     header: {
       Accept: 'application/json',
       'Content-Type': 'application/json'

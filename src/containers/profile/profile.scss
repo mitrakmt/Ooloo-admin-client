@@ -1,0 +1,39 @@
+.account {
+    margin: 50px;
+
+    &-container {
+         display: flex;
+         flex-direction: column;
+
+         &-input {
+             padding: 20px;
+             border: 1px solid #eceff5;
+             font-size: 14px;
+             width: 400px;
+             margin: 10px 20px;
+             border-radius: 5px;
+             outline: none;
+             transition-duration: 0.3s;
+             &:focus {
+                border: 1px solid #2ADBA7;
+             }
+         }
+
+         &-submitButton {
+            padding: 20px;
+            border: 1px solid #DAE9EE;
+            background-color: #2ADBA7;
+            font-size: 16px;
+            width: 440px;
+            margin: 20px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition-duration: 0.3s;
+            &:hover {
+                color: #eceff5;
+                background-color: rgb(94, 226, 186);
+            }
+         }
+    }
+}

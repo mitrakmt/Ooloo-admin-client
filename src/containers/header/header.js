@@ -69,7 +69,7 @@ class Header extends Component {
                     {
                         this.props.auth.profile ?
                             <div className="header-navLinks-row">
-                                <Link to={"/profile"}><p className="header-navLinks-text">My Profile</p></Link>
+                                <Link to={"/account"}><p className="header-navLinks-text">My Account</p></Link>
                                 <p className="header-navLinks-text" onClick={this.logout}>Logout</p>
                             </div> :
                             <div className="header-navLinks-row">

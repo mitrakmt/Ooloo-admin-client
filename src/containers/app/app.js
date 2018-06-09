@@ -61,7 +61,7 @@ class App extends Component {
             <Route path="/emailvalidation/:token" component={asyncEmailValidation} />
             <Route path="/login" component={asyncLogin} location={this.props.location} />
             <Route path="/passwordreset" component={asyncPasswordReset} />
-            <PrivateRoute path="/profile" component={asyncProfile} />
+            <PrivateRoute path="/account" component={asyncProfile} />
             <PrivateRoute path="/admins" component={asyncAdmins} />
             <PrivateRoute path="/schools" component={asyncSchools} />
             <PrivateRoute path="/questions" component={asyncQuestions} />
