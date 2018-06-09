@@ -17,6 +17,7 @@ class Profile extends Component {
     this.state = {
       availableUniversities: [],
       email: '',
+      email_verified: false,
       gender: '',
       name: '',
       username: '',
@@ -95,9 +96,9 @@ class Profile extends Component {
             />
             <h5
               className="account-container-info"
-              style={this.state.emailVerified ? { color: '#2ADBA7' } : { color: 'red' }}
+              style={this.state.email_verified ? { color: '#2ADBA7' } : { color: 'red' }}
             >
-              Email {this.state.emailVerified ? ' ' : ' not '}verified
+              Email {this.state.email_verified ? ' ' : ' not '}verified
             </h5>
           </div>
           <input

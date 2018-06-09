@@ -44,7 +44,7 @@ class App extends Component {
         <div className="app-container">
           <Switch>
             <Route exact path="/" component={asyncHome} />
-            <Route path="/emailvalidation/:token" component={asyncEmailValidation} />
+            <Route path="/emailverification/:token" component={asyncEmailValidation} />
             <Route path="/login" component={asyncLogin} location={this.props.location} />
             <Route path="/passwordreset" component={asyncPasswordReset} />
             <PrivateRoute path="/account" component={asyncProfile} />

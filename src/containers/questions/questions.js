@@ -239,20 +239,20 @@ class Questions extends Component {
             <div className="questions-listContainer-questionContainer" key={`questionsList-${question.id}`}>
               <div className="fullWidth">
                 <h3 className="questions-listContainer-questionContainer-name">Difficulty: {question.difficulty}</h3>
-                <h3 className="questions-listContainer-questionContainer-question">{question.question}</h3>
                 <h3 className="questions-listContainer-questionContainer-name">
                   Topics:
                   {question.topics.map(topic => ' ' + this.state.interests[topic] + ',')}
                 </h3>
+                <h3 className="questions-listContainer-questionContainer-question">{question.question}</h3>
                 <div className="row questions-listContainer-questionContainer-answers">
                   {question.answers.map(answer => (
-                    <h3 key={`questionList-answer-${question.id}-${answer}`}>{answer}</h3>
+                    <h3
+                      key={`questionList-answer-${question.id}-${answer}`}
+                      style={answer === question.correctAnswer[0] ? { color: 'green' } : {}}
+                    >
+                      {answer}
+                    </h3>
                   ))}
-                </div>
-                <div className="row">
-                  <p className="questions-listContainer-questionContainer-correctAnswer">
-                    Correct Answer: {question.correctAnswer}
-                  </p>
                 </div>
               </div>
               <h3

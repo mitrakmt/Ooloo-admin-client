@@ -24,7 +24,7 @@ class EmailValidation extends Component {
       token
     });
     validateEmail(token).then(response => {
-      if (response.validated) {
+      if (response.emailVerified) {
         this.setState({
           emailVerified: true,
           verifying: false
