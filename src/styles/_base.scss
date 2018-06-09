@@ -1,3 +1,4 @@
+@import './_variables.scss';
 // Set the first few el's in the tree to
 // the full page height, so children will have a % base
 html,
@@ -34,9 +35,9 @@ a {
 }
 
 .color-warning {
-  color: red;
+  color: $warning-color;
 }
 
 .color-positive {
-  color: green;
+  color: $positive-color;
 }

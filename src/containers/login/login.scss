@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .login {
   display: flex;
   flex-direction: column;
@@ -40,7 +42,7 @@
 
     &:focus {
       width: 300px;
-      color: #53e3a6;
+      color: $tertiary-color;
       background-color: white;
     }
   }
@@ -48,7 +50,7 @@
   &-submit {
     width: 280px;
     font-size: 18px;
-    color: #53e3a6;
+    color: $tertiary-color;
     background-color: white;
     margin-top: 25px;
     padding: 10px 15px;

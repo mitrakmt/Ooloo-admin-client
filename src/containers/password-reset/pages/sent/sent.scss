@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@import 'styles/_variables.scss';
 
 .sentPasswordContainer {
   margin-top: 22vh;
@@ -15,7 +15,7 @@
       }
 
       a {
-        color: blue;
+        color: $tertiary-color;
         outline: none;
       }
     }

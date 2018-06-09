@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .account {
   margin: 50px;
 
@@ -15,7 +17,7 @@
       transition-duration: 0.3s;
       outline: none;
       &:focus {
-        border: 1px solid #2adba7;
+        border: 1px solid $tertiary-color;
       }
     }
 
@@ -31,7 +33,7 @@
       transition-duration: 0.3s;
       outline: none;
       &:focus {
-        border: 1px solid #2adba7;
+        border: 1px solid $tertiary-color;
       }
 
       &-control {
@@ -60,7 +62,7 @@
       width: 440px;
       font-size: 16px;
       color: white;
-      background-color: #2adba7;
+      background-color: $tertiary-color;
       margin: 20px;
       padding: 20px;
       border: 1px solid #dae9ee;

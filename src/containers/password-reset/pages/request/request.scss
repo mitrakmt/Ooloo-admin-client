@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .requestContainer {
   margin-top: 16vh;
   &-parent {
@@ -8,7 +10,7 @@
     &-text {
       margin-bottom: 30px;
       input {
-        color: #fff !important;
+        color: #fff;
       }
     }
   }

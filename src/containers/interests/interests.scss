@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .interests {
   &-addContainer {
     display: flex;
@@ -49,10 +51,10 @@
         align-items: center;
         height: 20px;
         font-size: 14px;
-        color: #e45;
+        color: $warning-color;
         padding-left: 15px;
-        border-left: 3px solid #e45;
-        font-family: 'Open Sans', sans-serif;
+        border-left: 3px solid $warning-color;
+        font-family: $font-family;
       }
 
       &-delete {

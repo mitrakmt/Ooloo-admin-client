@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .admins {
   &-addContainer {
     display: flex;
@@ -9,9 +11,9 @@
       width: 320px;
       height: 35px;
       font-size: 16px;
+      padding: 5px 15px;
       border-radius: 5px;
       outline: none;
-      padding: 5px 15px;
     }
 
     &-button {
@@ -36,23 +38,23 @@
       align-items: center;
       width: 500px;
       height: 75px;
-      background-color: #f1f1ef;
+      background-color: $background-color;
       margin: 10px;
-      border-radius: 5px;
-      z-index: 2;
       box-shadow: 1px 10px 20px 0px rgba(218, 215, 206, 0.8);
+      border-radius: 5px;
       -webkit-transition: all 0.5s;
       -o-transition: all 0.5s;
       transition: all 0.5s;
+      z-index: 2;
 
       &-name {
         align-items: center;
         height: 20px;
         font-size: 14px;
-        color: #e45;
-        border-left: 3px solid #e45;
+        color: $warning-color;
         padding-left: 15px;
-        font-family: 'Open Sans', sans-serif;
+        border-left: 3px solid $warning-color;
+        font-family: $font-family;
       }
 
       &-info {
@@ -72,8 +74,8 @@
         margin-left: auto;
         margin-right: 20px;
         border-radius: 50%;
+        transition-duration: $transition-duration;
         cursor: pointer;
-        transition-duration: 0.2s;
         &:hover {
           color: #f1f1ef;
           background: rgb(42, 72, 107);

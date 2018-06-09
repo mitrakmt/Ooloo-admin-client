@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .questions {
   &-questionsContainer {
     display: flex;
@@ -207,7 +209,7 @@
 
       &-correctAnswer {
         font-size: 12px;
-        color: green;
+        color: $positive-color;
         margin-left: 20px;
         margin-top: -10px;
         margin-bottom: 10px;
@@ -217,10 +219,10 @@
         align-items: center;
         height: 20px;
         font-size: 14px;
-        color: #e45;
+        color: $warning-color;
         padding-left: 15px;
-        border-left: 3px solid #e45;
-        font-family: 'Open Sans', sans-serif;
+        border-left: 3px solid $warning-color;
+        font-family: $font-family;
       }
 
       &-info {
