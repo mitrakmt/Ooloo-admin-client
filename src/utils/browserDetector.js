@@ -9,4 +9,3 @@ export function isChrome() {
 export function isiPhone() {
   return navigator.userAgent.indexOf('iPhone') !== -1;
 }
-  

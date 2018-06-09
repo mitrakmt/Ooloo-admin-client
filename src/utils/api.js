@@ -19,18 +19,14 @@ const axios = Axios.create({
  * @param {function} onRequestFailure The callback function to create request failure action.
  *                 The function expects error as its argument.
  */
-export function callApi(
-  config,
-  request,
-  onRequestSuccess,
-  onRequestFailure
-) {
-  return ((dispatch) => {
+export function callApi(config, request, onRequestSuccess, onRequestFailure) {
+  return dispatch => {
     dispatch(request);
-    return axios.request(config)
+    return axios
+      .request(config)
       .then(res => dispatch(onRequestSuccess(res.data)))
       .catch(error => dispatch(onRequestFailure(error.response)));
-  });
+  };
 }
 
 /**
@@ -48,7 +44,8 @@ export function request(configObject) {
   config.headers.Accept = 'application/json';
   config.headers['Content-Type'] = 'application/json';
 
-  return axios.request(config)
+  return axios
+    .request(config)
     .then(res => res.data)
     .catch(error => error.response);
 }
@@ -60,12 +57,7 @@ export function request(configObject) {
  * @param {*} onRequestSuccess
  * @param {*} onRequestFailure
  */
-export function callApiWithJWT(
-  configObject,
-  request,
-  onRequestSuccess,
-  onRequestFailure
-) {
+export function callApiWithJWT(configObject, request, onRequestSuccess, onRequestFailure) {
   const token = loadToken();
   const config = configObject;
   if (!config.headers) {
@@ -73,12 +65,7 @@ export function callApiWithJWT(
   }
   config.headers.Authorization = `${token}`;
 
-  return callApi(
-    config,
-    request,
-    onRequestSuccess,
-    onRequestFailure
-  );
+  return callApi(config, request, onRequestSuccess, onRequestFailure);
 }
 
 export function grabS3Tokens(isUserProfile, ownerId, buffer) {
@@ -93,24 +80,44 @@ export function grabS3Tokens(isUserProfile, ownerId, buffer) {
       cacheControl: 'no-cache'
     }
   };
-  return nonActionApiWithJWT(settings)
-    .then((response) => {
-      const form = new FormData();
-      form.append('bucket', response.data.s3_policy.conditions[0].bucket);
-      form.append('key', response.data.s3_policy.conditions[1].key);
-      form.append('acl', 'public-read');
-      form.append('content-type', 'image/jpg');
-      form.append('x-amz-credential', response.data.s3_policy.conditions[4]['x-amz-credential']);
-      form.append('x-amz-algorithm', response.data.s3_policy.conditions[5]['x-amz-algorithm']);
-      form.append('x-amz-date', response.data.s3_policy.conditions[6]['x-amz-date']);
-      form.append('policy', response.data.base64_policy);
-      form.append('x-amz-signature', response.data.s3_signature);
-      form.append('file', buffer);
+  return nonActionApiWithJWT(settings).then(response => {
+    const form = new FormData();
+    form.append('bucket', response.data.s3_policy.conditions[0].bucket);
+    form.append('key', response.data.s3_policy.conditions[1].key);
+    form.append('acl', 'public-read');
+    form.append('content-type', 'image/jpg');
+    form.append('x-amz-credential', response.data.s3_policy.conditions[4]['x-amz-credential']);
+    form.append('x-amz-algorithm', response.data.s3_policy.conditions[5]['x-amz-algorithm']);
+    form.append('x-amz-date', response.data.s3_policy.conditions[6]['x-amz-date']);
+    form.append('policy', response.data.base64_policy);
+    form.append('x-amz-signature', response.data.s3_signature);
+    form.append('file', buffer);
 
-      const uploadToAWSSettings = {
+    const uploadToAWSSettings = {
+      async: true,
+      crossDomain: true,
+      url: response.data.host,
+      method: 'POST',
+      headers: {
+        enctype: 'multipart/form-data',
+        AccessControlAllowOrigin: '*',
+        cacheControl: 'no-cache'
+      },
+      processData: false,
+      contentType: false,
+      mimeType: 'multipart/form-data',
+      data: form
+    };
+
+    return axios.request(uploadToAWSSettings).then(() => {
+      const successForm = {
+        key: response.data.key,
+        isUserProfile
+      };
+      const successUploadSettings = {
         async: true,
         crossDomain: true,
-        url: response.data.host,
+        url: '/upload/image/success',
         method: 'POST',
         headers: {
           enctype: 'multipart/form-data',
@@ -120,34 +127,11 @@ export function grabS3Tokens(isUserProfile, ownerId, buffer) {
         processData: false,
         contentType: false,
         mimeType: 'multipart/form-data',
-        data: form
+        data: successForm
       };
-
-      return axios.request(uploadToAWSSettings)
-        .then(() => {
-          const successForm = {
-            key: response.data.key,
-            isUserProfile
-          };
-          const successUploadSettings = {
-            async: true,
-            crossDomain: true,
-            url: '/upload/image/success',
-            method: 'POST',
-            headers: {
-              enctype: 'multipart/form-data',
-              AccessControlAllowOrigin: '*',
-              cacheControl: 'no-cache'
-            },
-            processData: false,
-            contentType: false,
-            mimeType: 'multipart/form-data',
-            data: successForm
-          };
-          return nonActionApiWithJWT(successUploadSettings)
-            .then(status => status);
-        });
+      return nonActionApiWithJWT(successUploadSettings).then(status => status);
     });
+  });
 }
 
 export function nonActionApiWithJWT(config) {
@@ -160,7 +144,8 @@ export function nonActionApiWithJWT(config) {
 
   configObject.headers.Authorization = `${token}`;
 
-  return axios.request(configObject)
+  return axios
+    .request(configObject)
     .then(res => res.data)
     .catch(error => error.response);
 }
