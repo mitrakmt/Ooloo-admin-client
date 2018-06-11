@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import { clearUserInfo } from 'actions/user';
-import { logout } from 'actions/auth';
+import { clearUserInfo } from 'actions/user'
+import { logout } from 'actions/auth'
 
-import './header.css';
+import './header.css'
 
 class Header extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {};
+    this.state = {}
   }
 
   logout = () => {
-    this.props.dispatch(clearUserInfo());
+    this.props.dispatch(clearUserInfo())
     this.props.dispatch(logout()).then(() => {
-      this.context.router.history.push('/');
-    });
-  };
+      this.context.router.history.push('/')
+    })
+  }
 
   render() {
     return (
@@ -77,25 +77,25 @@ class Header extends Component {
           )}
         </div>
       </div>
-    );
+    )
   }
 }
 
 Header.defaultProps = {
-  location: {}
-};
+  location: {},
+}
 
 Header.propTypes = {
-  location: PropTypes.object
-};
+  location: PropTypes.object,
+}
 
 Header.contextTypes = {
   location: PropTypes.object,
-  router: PropTypes.object
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+  router: PropTypes.object,
 }
 
-export default connect(mapStateToProps)(Header);
+function mapStateToProps({ auth }) {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Header)

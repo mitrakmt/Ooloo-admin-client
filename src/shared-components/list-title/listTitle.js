@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import './listTitle.css';
+import './listTitle.css'
 
 const ListTitle = ({ showAddContainerStatus, showAddContainer, title }) => (
   <div className="listTitle">
@@ -13,6 +13,6 @@ const ListTitle = ({ showAddContainerStatus, showAddContainer, title }) => (
       </h2>
     </div>
   </div>
-);
+)
 
-export default ListTitle;
+export default ListTitle

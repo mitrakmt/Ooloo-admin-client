@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { requestPasswordReset } from 'actions/password-reset';
+import { requestPasswordReset } from 'actions/password-reset'
 
-import envelope from 'images/envelope.png';
+import envelope from 'images/envelope.png'
 
-import './sent.css';
+import './sent.css'
 
 class Sent extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
-      resetAlert: false
-    };
+      resetAlert: false,
+    }
   }
 
   componentDidMount() {
@@ -22,9 +22,9 @@ class Sent extends Component {
       this.props.history.push({
         pathname: '/passwordreset/request',
         state: {
-          error: 'no email provided'
-        }
-      });
+          error: 'no email provided',
+        },
+      })
     }
   }
 
@@ -35,21 +35,21 @@ class Sent extends Component {
           pathname: '/passwordreset/request',
           state: {
             error: 'Please resend a new password reset email and try again',
-            status: 400
-          }
-        });
-        return;
+            status: 400,
+          },
+        })
+        return
       }
       this.setState({
-        resetAlert: true
-      });
+        resetAlert: true,
+      })
       setTimeout(() => {
         this.setState({
-          resetAlert: false
-        });
-      }, 4000);
-    });
-  };
+          resetAlert: false,
+        })
+      }, 4000)
+    })
+  }
 
   render() {
     return (
@@ -76,26 +76,26 @@ class Sent extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 Sent.defaultProps = {
   location: {
-    pathname: ''
-  }
-};
+    pathname: '',
+  },
+}
 
 Sent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  })
-};
-
-function mapStateToProps() {
-  return { user: null };
+    pathname: PropTypes.string.isRequired,
+  }),
 }
 
-export default connect(mapStateToProps)(Sent);
+function mapStateToProps() {
+  return { user: null }
+}
+
+export default connect(mapStateToProps)(Sent)

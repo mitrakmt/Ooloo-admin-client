@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { getQuestions, addQuestion, deleteQuestion } from 'utils/questions';
-import { getInterests } from 'utils/interests';
+import { getQuestions, addQuestion, deleteQuestion } from 'utils/questions'
+import { getInterests } from 'utils/interests'
 
-import FilteredMultiSelect from 'react-filtered-multiselect';
+import FilteredMultiSelect from 'react-filtered-multiselect'
 
-import './questions.css';
+import './questions.css'
 
 class Questions extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       correctAnswer: '',
@@ -26,109 +26,122 @@ class Questions extends Component {
       interests: {},
       questions: [],
       question: '',
-      topics: []
-    };
+      topics: [],
+    }
   }
 
   componentWillMount() {
     getInterests().then(interests => {
-      let newInterests = {};
+      let newInterests = {}
       for (let i = 0; i < interests.length; i++) {
-        newInterests[interests[i].id] = interests[i].name;
+        newInterests[interests[i].id] = interests[i].name
       }
       this.setState({
         interests: newInterests,
-        availableInterests: interests
-      });
-    });
-    this.getQuestions();
+        availableInterests: interests,
+      })
+    })
+    this.getQuestions()
   }
 
   getQuestions = () => {
     getQuestions().then(questions => {
       this.setState({
-        question: '',
-        questions
-      });
-    });
-  };
+        questions,
+      })
+    })
+  }
 
   addQuestion = () => {
-    let answers = [this.state.answer1, this.state.answer2, this.state.answer3, this.state.answer4];
-    let correctAnswer = this.state.correctAnswer;
-    let difficulty = this.state.difficulty;
-    let finalTopics = [];
-    let image = this.state.image;
-    let question = this.state.question;
-    let topics = this.state.topics;
+    let answers = [this.state.answer1, this.state.answer2, this.state.answer3, this.state.answer4]
+    let correctAnswer = [this.state.correctAnswer]
+    let difficulty = this.state.difficulty
+    let finalTopics = []
+    let image = this.state.image
+    let question = this.state.question
+    let topics = this.state.topics
     for (let i = 0; i < topics.length; i++) {
-      finalTopics.push(topics[i].id);
+      finalTopics.push(topics[i].id)
     }
     // TODO: catch missing info provided
     addQuestion(question, finalTopics, difficulty, answers, correctAnswer, image).then(res => {
       if (res.error) {
-        return;
+        return
       }
-      this.getQuestions();
-    });
-  };
+      this.clearQuestionForm()
+      this.getQuestions()
+    })
+  }
+
+  clearQuestionForm = () => {
+    this.setState({
+      answer1: '',
+      answer2: '',
+      answer3: '',
+      difficulty: '',
+      answer4: '',
+      correctAnswer: '',
+      question: '',
+      topics: [],
+    })
+  }
 
   deleteQuestion = (id, index) => {
     // search through and remove in UI
-    let copied = this.state.questions.slice();
-    let original = this.state.questions;
-    copied.splice(index, 1);
+    let copied = this.state.questions.slice()
+    let original = this.state.questions
+    copied.splice(index, 1)
     this.setState({
-      questions: copied
-    });
+      questions: copied,
+    })
     deleteQuestion(id).then(res => {
       if (res.error) {
         this.setState({
-          questions: original
-        });
-        return;
+          questions: original,
+        })
+        return
       }
-    });
-  };
+    })
+  }
 
   showAddContainer = () => {
     this.setState({
-      showAddContainerStatus: !this.state.showAddContainerStatus
-    });
-  };
+      showAddContainerStatus: !this.state.showAddContainerStatus,
+    })
+  }
 
   handleDeselect = index => {
-    let topics = this.state.topics.slice();
-    topics.splice(index, 1);
-    this.setState({ topics });
-  };
+    let topics = this.state.topics.slice()
+    topics.splice(index, 1)
+    this.setState({ topics })
+  }
 
   handleSelectionChange = topics => {
-    this.setState({ topics });
-  };
+    this.setState({ topics })
+  }
 
   updateState = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   /**
    * Key listener to login on 'enter'
    */
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.addQuestion();
+      this.addQuestion()
     }
-  };
+  }
 
   render() {
     let multiselectStyles = {
       button: 'questions-addContainer-multiselect__button',
       buttonActive: 'questions-addContainer-multiselect__button--active',
       filter: 'questions-addContainer-multiselect__filter',
-      select: 'questions-addContainer-multiselect__select'
-    };
+      select: 'questions-addContainer-multiselect__select',
+    }
     return (
       <div className="questions">
         <div className="questions-questionsContainer">
@@ -258,7 +271,7 @@ class Questions extends Component {
               <h3
                 className="questions-listContainer-questionContainer-delete"
                 onClick={() => {
-                  this.deleteQuestion(question.id, index);
+                  this.deleteQuestion(question.id, index)
                 }}
               >
                 x
@@ -267,27 +280,27 @@ class Questions extends Component {
           ))}
         </div>
       </div>
-    );
+    )
   }
 }
 
 Questions.defaultProps = {
-  user: null
-};
+  user: null,
+}
 
 Questions.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 Questions.contextTypes = {
   router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+  store: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Questions);
+function mapStateToProps({ auth }) {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Questions)

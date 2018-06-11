@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import './loggedInHome.css';
+import './loggedInHome.css'
 
 const LoggedInHome = () => (
   <div className="loggedInHome">
@@ -21,6 +21,6 @@ const LoggedInHome = () => (
       </p>
     </div>
   </div>
-);
+)
 
-export default LoggedInHome;
+export default LoggedInHome

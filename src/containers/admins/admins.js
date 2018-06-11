@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { getAdmins, addAdmin } from 'utils/admins';
+import { getAdmins, addAdmin } from 'utils/admins'
 
-import ListTitle from 'shared-components/list-title/listTitle';
+import ListTitle from 'shared-components/list-title/listTitle'
 
-import './admins.css';
+import './admins.css'
 
 class Admins extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       admins: [],
       email: '',
       username: '',
       password: '',
-      adminPassword: ''
-    };
+      adminPassword: '',
+    }
   }
 
   componentWillMount() {
     getAdmins().then(admins => {
       this.setState({
-        admins
-      });
-    });
+        admins,
+      })
+    })
   }
 
   getAdmins = () => {
@@ -36,49 +36,49 @@ class Admins extends Component {
         email: '',
         password: '',
         username: '',
-        adminPassword: ''
-      });
-    });
-  };
+        adminPassword: '',
+      })
+    })
+  }
 
   addAdmin = () => {
-    let username = this.state.username;
-    let email = this.state.email;
-    let password = this.state.password;
-    let adminPassword = this.state.adminPassword;
+    let username = this.state.username
+    let email = this.state.email
+    let password = this.state.password
+    let adminPassword = this.state.adminPassword
 
     if (!email || !username || !password || !adminPassword) {
       // TODO: show visual error
-      return;
+      return
     }
     addAdmin(email, username, password, adminPassword).then(res => {
       if (res.error) {
-        return;
+        return
       }
-      this.getAdmins();
-    });
-  };
+      this.getAdmins()
+    })
+  }
 
   showAddContainer = () => {
     this.setState({
-      showAddContainerStatus: !this.state.showAddContainerStatus
-    });
-  };
+      showAddContainerStatus: !this.state.showAddContainerStatus,
+    })
+  }
 
   updateState = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   /**
    * Key listener to login on 'enter'
    */
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.addSchool();
+      this.addSchool()
     }
-  };
+  }
 
   render() {
     return (
@@ -141,27 +141,27 @@ class Admins extends Component {
           ))}
         </div>
       </div>
-    );
+    )
   }
 }
 
 Admins.defaultProps = {
-  user: null
-};
+  user: null,
+}
 
 Admins.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 Admins.contextTypes = {
   router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+  store: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Admins);
+function mapStateToProps({ auth }) {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Admins)

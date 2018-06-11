@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { requestPasswordReset } from 'actions/password-reset';
+import { requestPasswordReset } from 'actions/password-reset'
 
-import envelope from 'images/envelope.png';
+import envelope from 'images/envelope.png'
 
-import './request.css';
+import './request.css'
 
 class Request extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       email: '',
       errorDialogOpen: false,
       errorFields: {},
-      sentRecoveryEmail: false
-    };
+      sentRecoveryEmail: false,
+    }
   }
 
   /**
@@ -25,11 +25,11 @@ class Request extends Component {
    * here.
    */
   objectifyFormData() {
-    const { email } = this.state;
+    const { email } = this.state
     const formData = {
-      email
-    };
-    return formData;
+      email,
+    }
+    return formData
   }
 
   /**
@@ -37,9 +37,9 @@ class Request extends Component {
    */
   inputChanged = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   handleEmailSubmit = () => {
     this.props.dispatch(requestPasswordReset(this.state.email)).then(status => {
@@ -47,12 +47,12 @@ class Request extends Component {
         this.props.history.push({
           pathname: '/passwordreset/sent',
           state: {
-            email: this.state.email
-          }
-        });
+            email: this.state.email,
+          },
+        })
       }
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -79,17 +79,17 @@ class Request extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 Request.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
-};
-
-function mapStateToProps() {
-  return { user: null };
+  history: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Request);
+function mapStateToProps() {
+  return { user: null }
+}
+
+export default connect(mapStateToProps)(Request)

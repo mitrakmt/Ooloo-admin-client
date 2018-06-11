@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import { getUserInfo } from 'actions/user';
-import { login } from 'actions/auth';
+import { getUserInfo } from 'actions/user'
+import { login } from 'actions/auth'
 
-import './login.css';
+import './login.css'
 
 class Login extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       email: '',
       emailError: '',
       emailTouched: false,
       password: '',
-      loggingIn: false
-    };
+      loggingIn: false,
+    }
   }
 
   componentWillMount() {
     if (localStorage.getItem('access_token')) {
-      this.context.router.history.push('/');
+      this.context.router.history.push('/')
     }
   }
 
@@ -34,10 +34,10 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.profile) {
       try {
-        const redirect = this.props.location.state.from.pathname || '/';
-        this.context.router.history.push(redirect);
+        const redirect = this.props.location.state.from.pathname || '/'
+        this.context.router.history.push(redirect)
       } catch (err) {
-        this.context.router.history.push('/');
+        this.context.router.history.push('/')
       }
     }
   }
@@ -47,52 +47,52 @@ class Login extends Component {
    */
   inputChanged = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   updateEmail = event => {
     this.setState(
       {
-        email: event.target.value
+        email: event.target.value,
       },
-      this.validateEmail
-    );
-  };
+      this.validateEmail,
+    )
+  }
 
   emailTouched = () =>
     this.setState({
-      emailTouched: true
-    });
+      emailTouched: true,
+    })
 
   /**
    * Key listener to login on 'enter'
    */
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.handleLogin();
+      this.handleLogin()
     }
-  };
+  }
 
   /**
    * Handles a login attempt by dispatching the login action.
    */
   handleLogin = () => {
-    this.toggleLoggingIn();
+    this.toggleLoggingIn()
 
     this.props.dispatch(login(this.state.email, this.state.password)).then(response => {
-      this.toggleLoggingIn();
+      this.toggleLoggingIn()
       if (response.type === 'LOGIN_SUCCESS') {
-        this.props.dispatch(getUserInfo());
-        this.context.router.history.push('/');
+        this.props.dispatch(getUserInfo())
+        this.context.router.history.push('/')
       }
-    });
-  };
+    })
+  }
 
   toggleLoggingIn = () =>
     this.setState({
-      loggingIn: !this.state.loggingIn
-    });
+      loggingIn: !this.state.loggingIn,
+    })
 
   render() {
     return (
@@ -128,27 +128,27 @@ class Login extends Component {
           </p>
         </div>
       </div>
-    );
+    )
   }
 }
 
 Login.defaultProps = {
-  user: null
-};
+  user: null,
+}
 
 Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 Login.contextTypes = {
   router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+  store: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Login);
+function mapStateToProps({ auth }) {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Login)

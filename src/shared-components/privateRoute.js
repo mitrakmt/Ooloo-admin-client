@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Route, Redirect } from 'react-router'
+import PropTypes from 'prop-types'
 
-import { getAuth } from 'utils/api';
-import { getUserInfo } from 'actions/user';
+import { getAuth } from 'utils/api'
+import { getUserInfo } from 'actions/user'
 
 class PrivateRoute extends Component {
   componentWillMount() {
-    this.authenticated = getAuth();
+    this.authenticated = getAuth()
     if (this.authenticated.hasValidToken) {
-      this.props.dispatch(getUserInfo());
+      this.props.dispatch(getUserInfo())
     }
   }
 
   render() {
-    const ChildComponent = this.props.component;
+    const ChildComponent = this.props.component
 
     return (
       <Route
@@ -27,38 +27,38 @@ class PrivateRoute extends Component {
             <Redirect // eslint-disable-line
               to={{
                 pathname: '/login',
-                state: { from: props.location } // eslint-disable-line react/prop-types
+                state: { from: props.location }, // eslint-disable-line react/prop-types
               }}
             />
           )
         }
       />
-    );
+    )
   }
 }
 
 PrivateRoute.defaultProps = {
   rest: undefined,
-  user: null
-};
+  user: null,
+}
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   rest: PropTypes.array,
-  user: PropTypes.number
-};
+  user: PropTypes.number,
+}
 
 PrivateRoute.contextTypes = {
   store: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired
-};
+  router: PropTypes.object.isRequired,
+}
 
 function mapStateToProps({ auth: { user, loginError } }) {
   if (user) {
-    return { user: user.profile, loginError };
+    return { user: user.profile, loginError }
   }
-  return { user: null };
+  return { user: null }
 }
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute)

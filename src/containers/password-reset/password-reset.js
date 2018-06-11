@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router'
+import PropTypes from 'prop-types'
 
-import Request from './pages/request/request';
-import Sent from './pages/sent/sent';
-import SubmitPassword from './pages/submit-password/submit-password';
+import Request from './pages/request/request'
+import Sent from './pages/sent/sent'
+import SubmitPassword from './pages/submit-password/submit-password'
 
-import './password-reset.css';
+import './password-reset.css'
 
 class PasswordReset extends Component {
   render() {
@@ -18,21 +18,21 @@ class PasswordReset extends Component {
           <Route path="/passwordreset/submit" component={SubmitPassword} />
         </Switch>
       </div>
-    );
+    )
   }
 }
 
 PasswordReset.contextTypes = {
   location: PropTypes.object,
-  router: PropTypes.object
-};
+  router: PropTypes.object,
+}
 
 PasswordReset.defaultProps = {
-  location: {}
-};
+  location: {},
+}
 
 PasswordReset.propTypes = {
-  location: PropTypes.object
-};
+  location: PropTypes.object,
+}
 
-export default PasswordReset;
+export default PasswordReset

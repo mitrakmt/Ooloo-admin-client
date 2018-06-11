@@ -1,42 +1,42 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import { validateEmail } from 'utils/emailValidation';
+import { validateEmail } from 'utils/emailValidation'
 
-import './emailValidation.css';
+import './emailValidation.css'
 
 class EmailValidation extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       token: '',
       emailVerified: false,
       verifying: true,
       error: '',
-      verificationError: false
-    };
+      verificationError: false,
+    }
   }
 
   componentWillMount = () => {
-    let token = this.props.match.params.token;
+    let token = this.props.match.params.token
     this.setState({
-      token
-    });
+      token,
+    })
     validateEmail(token).then(response => {
       if (response.emailVerified) {
         this.setState({
           emailVerified: true,
-          verifying: false
-        });
+          verifying: false,
+        })
       } else {
         this.setState({
           verificationError: true,
-          error: response.error
-        });
+          error: response.error,
+        })
       }
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -45,21 +45,21 @@ class EmailValidation extends Component {
         {this.state.verifying && <p style={{ color: 'red' }}>Verifying... be patient</p>}
         {this.state.emailVerified && <p style={{ color: 'green' }}>Email Verified</p>}
       </div>
-    );
+    )
   }
 }
 
 EmailValidation.defaultProps = {
-  location: {}
-};
+  location: {},
+}
 
 EmailValidation.propTypes = {
-  location: PropTypes.object
-};
+  location: PropTypes.object,
+}
 
 EmailValidation.contextTypes = {
   location: PropTypes.object,
-  router: PropTypes.object
-};
+  router: PropTypes.object,
+}
 
-export default EmailValidation;
+export default EmailValidation

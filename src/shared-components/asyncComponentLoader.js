@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * Loads a given component asynchronously. This will be used by
@@ -10,16 +10,16 @@ import React, { Component } from 'react';
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
     constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
-        component: null
-      };
+        component: null,
+      }
     }
 
     async componentDidMount() {
-      const { default: component } = await importComponent();
-      this.onMount(component);
+      const { default: component } = await importComponent()
+      this.onMount(component)
     }
     /**
      * A function to be called once asyncComponent has mounted.
@@ -30,16 +30,16 @@ export default function asyncComponent(importComponent) {
      */
     onMount(componentToStore) {
       this.setState({
-        component: componentToStore
-      });
+        component: componentToStore,
+      })
     }
 
     render() {
-      const RenderComponent = this.state.component;
+      const RenderComponent = this.state.component
 
-      return RenderComponent ? <RenderComponent {...this.props} /> : null;
+      return RenderComponent ? <RenderComponent {...this.props} /> : null
     }
   }
 
-  return AsyncComponent;
+  return AsyncComponent
 }

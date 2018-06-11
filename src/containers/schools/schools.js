@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { getSchools, addSchool, deleteSchool } from 'utils/schools';
+import { getSchools, addSchool, deleteSchool } from 'utils/schools'
 
-import ListTitle from 'shared-components/list-title/listTitle';
-import SelectUSState from 'react-select-us-states';
+import ListTitle from 'shared-components/list-title/listTitle'
+import SelectUSState from 'react-select-us-states'
 
-import './schools.css';
+import './schools.css'
 
 class Schools extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       degree: '',
       name: '',
       schools: [],
       showAddContainerStatus: false,
-      state: 'Alabama'
-    };
+      state: 'Alabama',
+    }
   }
 
   componentWillMount() {
     getSchools().then(schools => {
       this.setState({
-        schools
-      });
-    });
+        schools,
+      })
+    })
   }
 
   getSchools = () => {
@@ -35,69 +35,69 @@ class Schools extends Component {
       this.setState({
         degree: '',
         name: '',
-        schools
-      });
-    });
-  };
+        schools,
+      })
+    })
+  }
 
   addSchool = () => {
-    let degree = this.state.degree;
-    let name = this.state.name;
-    let state = this.state.state;
+    let degree = this.state.degree
+    let name = this.state.name
+    let state = this.state.state
     if (!name || !state || !degree) {
-      return;
+      return
     }
     addSchool(name, state, degree).then(res => {
       if (res.error) {
-        return;
+        return
       }
-      this.getSchools();
-    });
-  };
+      this.getSchools()
+    })
+  }
 
   deleteSchool = (id, index) => {
-    let original = this.state.schools;
-    let copied = this.state.schools.slice();
-    copied.splice(index, 1);
+    let original = this.state.schools
+    let copied = this.state.schools.slice()
+    copied.splice(index, 1)
     this.setState({
-      schools: copied
-    });
+      schools: copied,
+    })
     deleteSchool(id).then(res => {
       if (res.error) {
         this.setState({
-          schools: original
-        });
-        return;
+          schools: original,
+        })
+        return
       }
-    });
-  };
+    })
+  }
 
   showAddContainer = () => {
     this.setState({
-      showAddContainerStatus: !this.state.showAddContainerStatus
-    });
-  };
+      showAddContainerStatus: !this.state.showAddContainerStatus,
+    })
+  }
 
   updateState = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   changeUsState = name => {
     this.setState({
-      state: name
-    });
-  };
+      state: name,
+    })
+  }
 
   /**
    * Key listener to login on 'enter'
    */
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.addSchool();
+      this.addSchool()
     }
-  };
+  }
 
   render() {
     return (
@@ -149,7 +149,7 @@ class Schools extends Component {
               <h3
                 className="schools-listContainer-schoolContainer-delete"
                 onClick={() => {
-                  this.deleteSchool(school.id, index);
+                  this.deleteSchool(school.id, index)
                 }}
               >
                 x
@@ -158,27 +158,27 @@ class Schools extends Component {
           ))}
         </div>
       </div>
-    );
+    )
   }
 }
 
 Schools.defaultProps = {
-  user: null
-};
+  user: null,
+}
 
 Schools.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 Schools.contextTypes = {
   router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth }) {
-  return { auth };
+  store: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Schools);
+function mapStateToProps({ auth }) {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Schools)

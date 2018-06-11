@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { getSchools } from 'utils/schools';
-import { getUserInfo, saveUserInfo } from 'actions/user';
+import { getSchools } from 'utils/schools'
+import { getUserInfo, saveUserInfo } from 'actions/user'
 
-import Dropdown from 'react-dropdown';
+import Dropdown from 'react-dropdown'
 
-import './profile.css';
-import 'react-dropdown/style.css';
+import './profile.css'
+import 'react-dropdown/style.css'
 
 class Profile extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       availableUniversities: [],
@@ -22,57 +22,57 @@ class Profile extends Component {
       name: '',
       username: '',
       university: '',
-      universityId: null
-    };
+      universityId: null,
+    }
   }
 
   componentWillMount() {
     this.props.dispatch(getUserInfo(this.props.auth.profile.id)).then(() => {
-      let user = this.props.user.data;
-      this.setState(user);
+      let user = this.props.user.data
+      this.setState(user)
 
       getSchools().then(universities => {
-        let availableUniversities = [];
+        let availableUniversities = []
         for (let i = 0; i < universities.length; i++) {
           availableUniversities.push({
             label: universities[i].name,
-            value: universities[i].id
-          });
+            value: universities[i].id,
+          })
           if (this.props.user.data.university === universities[i].id) {
             this.setState({
-              university: universities[i].name
-            });
+              university: universities[i].name,
+            })
           }
         }
         this.setState({
-          availableUniversities
-        });
-      });
-    });
+          availableUniversities,
+        })
+      })
+    })
   }
 
   updateState = event => {
     this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+      [event.target.id]: event.target.value,
+    })
+  }
 
   updateUniversity = university => {
     this.setState({
       universityId: university.value,
-      university
-    });
-  };
+      university,
+    })
+  }
 
   saveInfo = () => {
     let userInfo = {
       name: this.state.name,
       gender: this.state.gender,
       username: this.state.username,
-      university: this.state.universityId
-    };
-    this.props.dispatch(saveUserInfo(userInfo));
-  };
+      university: this.state.universityId,
+    }
+    this.props.dispatch(saveUserInfo(userInfo))
+  }
 
   render() {
     return (
@@ -130,27 +130,27 @@ class Profile extends Component {
           </button>
         </div>
       </div>
-    );
+    )
   }
 }
 
 Profile.defaultProps = {
-  user: null
-};
+  user: null,
+}
 
 Profile.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
-};
+  auth: PropTypes.object.isRequired,
+}
 
 Profile.contextTypes = {
   router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
-
-function mapStateToProps({ auth, user }) {
-  return { auth, user };
+  store: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps)(Profile);
+function mapStateToProps({ auth, user }) {
+  return { auth, user }
+}
+
+export default connect(mapStateToProps)(Profile)

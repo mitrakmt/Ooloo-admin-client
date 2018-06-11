@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import './listCard.css';
+import './listCard.css'
 
-const ListCard = ({ name, deleteFunction, title }) => <div />;
+const ListCard = ({ name, deleteFunction, title }) => <div />
 
-export default ListCard;
+export default ListCard

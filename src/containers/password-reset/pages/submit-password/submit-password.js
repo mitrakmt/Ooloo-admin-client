@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import FontAwesome from 'react-fontawesome'
+import PropTypes from 'prop-types'
+import queryString from 'query-string'
 
-import { submitPasswordReset } from 'actions/password-reset';
+import { submitPasswordReset } from 'actions/password-reset'
 
-import key from 'images/key.png';
+import key from 'images/key.png'
 
-import './submit-password.css';
+import './submit-password.css'
 
 class SubmitPassword extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
 
     this.state = {
       invalidTokenError: false,
       password: '',
       passwordLengthValidation: false,
-      passwordTypeValidation: false
-    };
+      passwordTypeValidation: false,
+    }
   }
 
   /**
@@ -28,66 +28,66 @@ class SubmitPassword extends Component {
    * here.
    */
   objectifyFormData = () => {
-    const { password } = this.state;
+    const { password } = this.state
     const formData = {
-      password
-    };
-    return formData;
-  };
+      password,
+    }
+    return formData
+  }
 
-  updateLocalState = () => {};
+  updateLocalState = () => {}
 
   /**
    * Updates the local state of Login Component.
    */
   inputChanged = event => {
     this.setState({
-      password: event.target.value
-    });
-    const password = event.target.value;
-    const uppercaseRegex = password.match(/[A-Z]/g);
-    const lowercaseRegex = password.match(/[a-z]/g);
-    const symbolRegex = password.match(/[!@#$%^&*()]/g);
-    const numberRegex = password.match(/[0-9]/g);
+      password: event.target.value,
+    })
+    const password = event.target.value
+    const uppercaseRegex = password.match(/[A-Z]/g)
+    const lowercaseRegex = password.match(/[a-z]/g)
+    const symbolRegex = password.match(/[!@#$%^&*()]/g)
+    const numberRegex = password.match(/[0-9]/g)
 
     if (password.length >= 8) {
       this.setState({
-        passwordLengthValidation: true
-      });
+        passwordLengthValidation: true,
+      })
     } else {
       this.setState({
-        passwordLengthValidation: false
-      });
+        passwordLengthValidation: false,
+      })
     }
 
     if (uppercaseRegex === null || lowercaseRegex === null || (symbolRegex === null && numberRegex === null)) {
       this.setState({
-        passwordTypeValidation: false
-      });
-      return;
+        passwordTypeValidation: false,
+      })
+      return
     }
     this.setState({
-      passwordTypeValidation: true
-    });
-  };
+      passwordTypeValidation: true,
+    })
+  }
 
   handlePasswordSubmit = () => {
-    const parsed = queryString.parse(this.props.location.search);
+    const parsed = queryString.parse(this.props.location.search)
 
     if (this.state.passwordTypeValidation === false || this.state.passwordLengthValidation === false) {
-      return;
+      return
     }
 
     this.props.dispatch(submitPasswordReset(this.state.password, parsed.t)).then(status => {
       if (status.response.status === 'success') {
-        this.props.history.push('/login');
+        this.props.history.push('/login')
       } else {
         this.setState({
-          invalidTokenError: true
-        });
+          invalidTokenError: true,
+        })
       }
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -147,27 +147,27 @@ class SubmitPassword extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 SubmitPassword.defaultProps = {
   location: {
-    pathname: ''
-  }
-};
+    pathname: '',
+  },
+}
 
 SubmitPassword.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
-    search: PropTypes.string
-  })
-};
-
-function mapStateToProps() {
-  return { user: null };
+    search: PropTypes.string,
+  }),
 }
 
-export default connect(mapStateToProps)(SubmitPassword);
+function mapStateToProps() {
+  return { user: null }
+}
+
+export default connect(mapStateToProps)(SubmitPassword)

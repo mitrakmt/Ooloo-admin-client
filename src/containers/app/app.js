@@ -1,39 +1,38 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router'
 
-import { getUserInfo } from 'actions/user';
-import { getAuth } from 'utils/api';
+import { getUserInfo } from 'actions/user'
+import { getAuth } from 'utils/api'
+import asyncLoader from 'shared-components/asyncComponentLoader'
+import PrivateRoute from 'shared-components/privateRoute'
 
-import asyncLoader from 'shared-components/asyncComponentLoader';
-import PrivateRoute from 'shared-components/privateRoute';
+import Header from 'containers/header/header'
 
-import Header from 'containers/header/header';
+import './app.css'
 
-import './app.css';
-
-const asyncLogin = asyncLoader(() => require('../../containers/login/login'));
-const asyncPasswordReset = asyncLoader(() => require('../../containers/password-reset/password-reset'));
-const asyncProfile = asyncLoader(() => require('../../containers/profile/profile'));
-const asyncEmailValidation = asyncLoader(() => require('../../containers/email-validation/emailValidation'));
-const asyncHome = asyncLoader(() => require('../../containers/home/home'));
-const asyncAdmins = asyncLoader(() => require('../../containers/admins/admins'));
-const asyncSchools = asyncLoader(() => require('../../containers/schools/schools'));
-const asyncQuestions = asyncLoader(() => require('../../containers/questions/questions'));
-const asyncInterests = asyncLoader(() => require('../../containers/interests/interests'));
+const asyncLogin = asyncLoader(() => require('../../containers/login/login'))
+const asyncPasswordReset = asyncLoader(() => require('../../containers/password-reset/password-reset'))
+const asyncProfile = asyncLoader(() => require('../../containers/profile/profile'))
+const asyncEmailValidation = asyncLoader(() => require('../../containers/email-validation/emailValidation'))
+const asyncHome = asyncLoader(() => require('../../containers/home/home'))
+const asyncAdmins = asyncLoader(() => require('../../containers/admins/admins'))
+const asyncSchools = asyncLoader(() => require('../../containers/schools/schools'))
+const asyncQuestions = asyncLoader(() => require('../../containers/questions/questions'))
+const asyncInterests = asyncLoader(() => require('../../containers/interests/interests'))
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {};
+    this.state = {}
   }
 
   componentWillMount() {
-    getAuth();
+    getAuth()
     if (this.props.auth.profile) {
-      this.props.dispatch(getUserInfo());
+      this.props.dispatch(getUserInfo())
     }
   }
 
@@ -56,23 +55,23 @@ class App extends Component {
           </Switch>
         </div>
       </div>
-    );
+    )
   }
 }
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
-};
+  history: PropTypes.object.isRequired,
+}
 
 App.contextTypes = {
   history: PropTypes.object,
-  router: PropTypes.object
-};
+  router: PropTypes.object,
+}
 
 const mapStateToProps = ({ auth, user }) => {
-  return { auth, user };
-};
+  return { auth, user }
+}
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)
