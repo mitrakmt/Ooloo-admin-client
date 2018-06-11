@@ -1,0 +1,31 @@
+@import 'styles/_variables.scss';
+
+.requestContainer {
+  margin-top: 16vh;
+  &-parent {
+    width: 100%;
+    text-align: center;
+  }
+  &-input {
+    &-text {
+      margin-bottom: 30px;
+      input {
+        color: #fff;
+      }
+    }
+  }
+  &-formContainer {
+    &-header {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    &-subHeader {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+    img {
+      width: 120px;
+    }
+  }
+}

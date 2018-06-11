@@ -1,0 +1,11 @@
+@import 'styles/_variables.scss';
+
+html,
+body,
+.app,
+.app-container {
+  height: 95vh;
+  min-height: 100%;
+
+  background: linear-gradient(135deg, rgba(250, 249, 247, 1) 0%, rgba(221, 218, 209, 1) 100%);
+}

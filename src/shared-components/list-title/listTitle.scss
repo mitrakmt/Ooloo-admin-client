@@ -1,0 +1,57 @@
+@import 'styles/_variables.scss';
+
+.listTitle {
+  display: flex;
+  justify-content: center;
+
+  &-headerContainer {
+    width: 430px;
+    height: 60px;
+    background: rgb(42, 72, 107);
+    background: -moz-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    background: linear-gradient(to right, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    box-shadow: 1px 15px 25px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a486b', endColorstr='#507aa7',GradientType=1 );
+    font-family: $font-stack;
+
+    &-title {
+      font-size: 12px;
+      font-weight: 400;
+      color: #fff;
+      margin-left: 25px;
+      margin-top: 23px;
+      letter-spacing: 7px;
+      text-align: left;
+    }
+  }
+  &-addButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 60px;
+    color: white;
+    background: rgb(42, 72, 107);
+    background: -moz-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    background: linear-gradient(to right, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+    margin-top: 50px;
+    box-shadow: 1px 15px 25px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a486b', endColorstr='#507aa7',GradientType=1 );
+
+    &-icon {
+      margin: 0;
+    }
+  }
+}

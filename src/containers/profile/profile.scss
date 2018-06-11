@@ -1,0 +1,78 @@
+@import 'styles/_variables.scss';
+
+.account {
+  margin: 50px;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+
+    &-input {
+      width: 400px;
+      font-size: 14px;
+      margin: 10px 20px;
+      padding: 20px;
+      border: 1px solid #eceff5;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      outline: none;
+      &:focus {
+        border: 1px solid $tertiary-color;
+      }
+    }
+
+    &-info {
+      margin: 30px 20px;
+    }
+
+    &-dropdown {
+      width: 440px;
+      font-size: 14px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      outline: none;
+      &:focus {
+        border: 1px solid $tertiary-color;
+      }
+
+      &-control {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        font-size: 14px;
+        padding: 10px 20px;
+        border: 1px solid #eceff5;
+        border-radius: 5px;
+        transition-duration: 0.3s;
+        outline: none;
+      }
+
+      &-menu {
+        width: 440px;
+        font-size: 14px;
+        border: 1px solid #eceff5;
+        border-radius: 5px;
+        transition-duration: 0.3s;
+        outline: none;
+      }
+    }
+
+    &-submitButton {
+      width: 440px;
+      font-size: 16px;
+      color: white;
+      background-color: $tertiary-color;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #dae9ee;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: #eceff5;
+        background-color: rgb(94, 226, 186);
+      }
+    }
+  }
+}

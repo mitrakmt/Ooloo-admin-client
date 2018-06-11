@@ -1,0 +1,43 @@
+@import './_variables.scss';
+// Set the first few el's in the tree to
+// the full page height, so children will have a % base
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+// chrome autofill background color from yellow to white
+input:-webkit-autofill {
+  box-shadow: 0 0 0 30px white inset;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.color-warning {
+  color: $warning-color;
+}
+
+.color-positive {
+  color: $positive-color;
+}
