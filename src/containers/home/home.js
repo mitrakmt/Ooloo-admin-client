@@ -15,18 +15,23 @@ class Home extends Component {
   }
 
   render() {
-    return <div className="home">{this.props.auth.profile ? <LoggedInHome /> : <LoggedOutHome />}</div>
+    return (
+      <div className="home">
+        {this.props.auth.profile ? <LoggedInHome username={this.props.username} /> : <LoggedOutHome />}
+      </div>
+    )
   }
 }
 
 Home.defaultProps = {
-  user: null,
+  username: '',
 }
 
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  username: PropTypes.string,
 }
 
 Home.contextTypes = {
@@ -34,7 +39,10 @@ Home.contextTypes = {
   store: PropTypes.object.isRequired,
 }
 
-function mapStateToProps({ auth }) {
+function mapStateToProps({ auth, user }) {
+  if (user) {
+    return { auth, username: user.data.username }
+  }
   return { auth }
 }
 

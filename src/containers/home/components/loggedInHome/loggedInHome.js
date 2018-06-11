@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 import './loggedInHome.css'
 
-const LoggedInHome = () => (
+const LoggedInHome = ({ username }) => (
   <div className="loggedInHome">
-    <h1 className="loggedInHome-heading">Welcome!</h1>
+    <h1 className="loggedInHome-heading">Welcome{username && ` ${username}`}!</h1>
     <div className="loggedInHome-buttons">
       <p className="loggedInHome-buttons-button">
         <Link to="/interests">Interests</Link>

@@ -3,7 +3,7 @@ import './loggedOutHome.css'
 
 const LoggedOutHome = () => (
   <div className="loggedOutHome">
-    <h1>Logged out</h1>
+    <h1>Welcome! Please log in to continue.</h1>
   </div>
 )
 

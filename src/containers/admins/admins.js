@@ -118,10 +118,6 @@ class Admins extends Component {
   }
 }
 
-Admins.defaultProps = {
-  user: null,
-}
-
 Admins.propTypes = {
   dispatch: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
