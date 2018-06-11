@@ -1,12 +1,12 @@
-import { request } from './api';
+import { request } from './api'
 
 export function getSchools() {
   const config = {
     url: '/admin/school',
-    method: 'GET'
-  };
+    method: 'GET',
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function addSchool(name, state, degree) {
@@ -16,11 +16,11 @@ export function addSchool(name, state, degree) {
     data: {
       degree,
       state,
-      name
-    }
-  };
+      name,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function deleteSchool(schoolId) {
@@ -28,9 +28,9 @@ export function deleteSchool(schoolId) {
     url: '/admin/school',
     method: 'DELETE',
     data: {
-      schoolId
-    }
-  };
+      schoolId,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }

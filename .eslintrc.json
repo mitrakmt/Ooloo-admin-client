@@ -1,16 +1,6 @@
 {
   "extends": ["airbnb"],
   "rules": {
-    "maximumLineLength": 120,
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "trailingComma": "all",
-        "tabWidth": 2,
-        "useTabs": false,
-        "semi": false
-      }
-    ]
+    "maximumLineLength": 120
   }
 }

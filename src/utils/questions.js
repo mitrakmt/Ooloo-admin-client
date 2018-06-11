@@ -1,12 +1,12 @@
-import { request } from './api';
+import { request } from './api'
 
 export function getQuestions() {
   const config = {
     url: '/admin/question',
-    method: 'GET'
-  };
+    method: 'GET',
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function addQuestion(question, topics, difficulty, answers, correctAnswer, image) {
@@ -19,11 +19,11 @@ export function addQuestion(question, topics, difficulty, answers, correctAnswer
       difficulty,
       image: image,
       question,
-      topics
-    }
-  };
+      topics,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function deleteQuestion(questionId) {
@@ -31,9 +31,9 @@ export function deleteQuestion(questionId) {
     url: '/admin/question',
     method: 'DELETE',
     data: {
-      questionId
-    }
-  };
+      questionId,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }

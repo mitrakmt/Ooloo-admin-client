@@ -1,12 +1,12 @@
-import { request } from './api';
+import { request } from './api'
 
 export function getInterests() {
   const config = {
     url: '/admin/interest',
-    method: 'GET'
-  };
+    method: 'GET',
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function addInterest(interest) {
@@ -14,11 +14,11 @@ export function addInterest(interest) {
     url: '/admin/interest',
     method: 'POST',
     data: {
-      interest
-    }
-  };
+      interest,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function deleteInterest(interest) {
@@ -26,9 +26,9 @@ export function deleteInterest(interest) {
     url: '/admin/interest',
     method: 'DELETE',
     data: {
-      interest
-    }
-  };
+      interest,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }

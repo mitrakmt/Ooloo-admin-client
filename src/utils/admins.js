@@ -1,12 +1,12 @@
-import { request } from './api';
+import { request } from './api'
 
 export function getAdmins() {
   const config = {
     url: '/admin/user',
-    method: 'GET'
-  };
+    method: 'GET',
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
 
 export function addAdmin(email, username, password, adminPassword) {
@@ -17,9 +17,9 @@ export function addAdmin(email, username, password, adminPassword) {
       adminPassword,
       email,
       password,
-      username
-    }
-  };
+      username,
+    },
+  }
 
-  return request(config).then(status => status);
+  return request(config).then(status => status)
 }
