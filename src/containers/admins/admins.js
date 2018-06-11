@@ -6,6 +6,8 @@ import { getAdmins, addAdmin } from 'utils/admins'
 
 import ListTitle from 'shared-components/list-title/listTitle'
 
+import AdminForm from './components/adminForm/adminForm'
+
 import './admins.css'
 
 class Admins extends Component {
@@ -89,47 +91,18 @@ class Admins extends Component {
           title="Admins"
         />
         {this.state.showAddContainerStatus && (
-          <div className="admins-addContainer">
-            <div className="column">
-              <input
-                className="admins-addContainer-input"
-                id="username"
-                onChange={this.updateState}
-                placeholder="Username"
-                value={this.state.username}
-              />
-              <input
-                className="admins-addContainer-input"
-                id="email"
-                onChange={this.updateState}
-                placeholder="Email"
-                value={this.state.email}
-              />
-              <input
-                className="admins-addContainer-input"
-                id="password"
-                onChange={this.updateState}
-                placeholder="Password"
-                type="password"
-                value={this.state.password}
-              />
-              <input
-                className="admins-addContainer-input"
-                id="adminPassword"
-                onChange={this.updateState}
-                onKeyPress={this.handleKeyPress}
-                placeholder="Admin Password"
-                type="password"
-                value={this.state.adminPassword}
-              />
-            </div>
-            <button className="admins-addContainer-button" onClick={this.addAdmin}>
-              Submit
-            </button>
-          </div>
+          <AdminForm
+            username={this.state.username}
+            email={this.state.email}
+            password={this.state.password}
+            adminPassword={this.state.adminPassword}
+            handleKeyPress={this.handleKeyPress}
+            updateState={this.updateState}
+            addAdmin={this.addAdmin}
+          />
         )}
         <div className="admins-listContainer">
-          {this.state.admins.map((admin, index) => (
+          {this.state.admins.map(admin => (
             <div className="admins-listContainer-adminContainer" key={`adminsList-${admin.id}${admin.email}`}>
               <div>
                 <h3 className="admins-listContainer-adminContainer-name">{admin.email}</h3>
