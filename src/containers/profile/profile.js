@@ -6,6 +6,7 @@ import { getSchools } from 'utils/schools'
 import { getUserInfo, saveUserInfo } from 'actions/user'
 
 import Dropdown from 'react-dropdown'
+import ImageUpload from 'shared-components/image-upload/imageUpload'
 
 import './profile.css'
 import 'react-dropdown/style.css'
@@ -122,9 +123,10 @@ class Profile extends Component {
             menuClassName="account-container-dropdown-menu"
             onChange={this.updateUniversity}
             options={this.state.availableUniversities}
-            placeholder="Select an option"
+            placeholder="Select a school"
             value={this.state.university}
           />
+          <ImageUpload userId={this.props.userId} />
           <button className="account-container-submitButton" onClick={this.saveInfo}>
             Save
           </button>
@@ -150,7 +152,7 @@ Profile.contextTypes = {
 }
 
 function mapStateToProps({ auth, user }) {
-  return { auth, user }
+  return { auth, user, userId: user.data.id }
 }
 
 export default connect(mapStateToProps)(Profile)
