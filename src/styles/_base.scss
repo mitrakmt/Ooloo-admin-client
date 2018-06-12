@@ -26,6 +26,19 @@ a {
   display: flex;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 5px;
+  outline: none;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+}
+
 .fullWidth {
   width: 100%;
 }
