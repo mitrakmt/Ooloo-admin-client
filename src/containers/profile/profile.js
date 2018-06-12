@@ -7,6 +7,7 @@ import { getUserInfo, saveUserInfo } from 'actions/user'
 
 import Dropdown from 'react-dropdown'
 import ImageUpload from 'shared-components/image-upload/imageUpload'
+import AWS from 'aws-sdk'
 
 import './profile.css'
 import 'react-dropdown/style.css'
@@ -24,12 +25,14 @@ class Profile extends Component {
       username: '',
       university: '',
       universityId: null,
+      profileImage: '',
     }
   }
 
   componentWillMount() {
     this.props.dispatch(getUserInfo(this.props.auth.profile.id)).then(() => {
       let user = this.props.user.data
+      this.downloadPhoto()
       this.setState(user)
 
       getSchools().then(universities => {
@@ -75,11 +78,80 @@ class Profile extends Component {
     this.props.dispatch(saveUserInfo(userInfo))
   }
 
+  downloadPhoto = () => {
+    var wasabiEndpoint = new AWS.Endpoint('s3.wasabisys.com')
+    var s3 = new AWS.S3({
+      endpoint: wasabiEndpoint,
+      accessKeyId: process.env.REACT_APP_WASABI_ACCESS_KEY,
+      secretAccessKey: process.env.REACT_APP_WASABI_SECRET_KEY,
+    })
+    var params = {
+      Bucket: 'ooloo-profile-images',
+      Key: this.props.userId.toString(),
+    }
+    let thisContext = this
+
+    s3.getObject(params, (err, data) => {
+      if (!err) {
+        console.log('data', data)
+        var url = window.URL || window.webkitURL
+        var profileImage = new Blob([new Uint8Array(data.Body)])
+        var imageSrc = url.createObjectURL(profileImage)
+
+        thisContext.setState({
+          profileImage: imageSrc,
+        })
+      } else {
+        console.log('err', err)
+        this.setState({
+          profileImage: '',
+        })
+      }
+    })
+  }
+
+  deleteProfileImage = () => {
+    var wasabiEndpoint = new AWS.Endpoint('s3.wasabisys.com')
+    var s3 = new AWS.S3({
+      endpoint: wasabiEndpoint,
+      accessKeyId: process.env.REACT_APP_WASABI_ACCESS_KEY,
+      secretAccessKey: process.env.REACT_APP_WASABI_SECRET_KEY,
+    })
+    var params = {
+      Bucket: 'ooloo-profile-images',
+      Key: this.props.userId.toString(),
+    }
+    let thisContext = this
+
+    s3.deleteObject(params, function(err, data) {
+      if (!err) {
+        thisContext.setState({
+          profileImage: '',
+        })
+      } else {
+        console.log(err) // an error ocurred
+      }
+    })
+  }
+
   render() {
     return (
       <div className="account">
         <h1>My Account</h1>
         <div className="account-container">
+          {this.state.profileImage ? (
+            <div className="account-container-profilePictureContainer">
+              <img className="account-container-profilePictureContainer-image" src={this.state.profileImage} />
+              <button
+                className="account-container-profilePictureContainer-deleteButton"
+                onClick={this.deleteProfileImage}
+              >
+                Delete
+              </button>
+            </div>
+          ) : (
+            <ImageUpload userId={this.props.userId} loadPhoto={this.downloadPhoto} />
+          )}
           <input
             className="account-container-input"
             id="name"
@@ -126,7 +198,6 @@ class Profile extends Component {
             placeholder="Select a school"
             value={this.state.university}
           />
-          <ImageUpload userId={this.props.userId} />
           <button className="account-container-submitButton" onClick={this.saveInfo}>
             Save
           </button>
