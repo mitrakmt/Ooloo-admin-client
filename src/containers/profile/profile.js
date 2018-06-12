@@ -93,7 +93,6 @@ class Profile extends Component {
 
     s3.getObject(params, (err, data) => {
       if (!err) {
-        console.log('data', data)
         var url = window.URL || window.webkitURL
         var profileImage = new Blob([new Uint8Array(data.Body)])
         var imageSrc = url.createObjectURL(profileImage)
@@ -102,9 +101,8 @@ class Profile extends Component {
           profileImage: imageSrc,
         })
       } else {
-        console.log('err', err)
-        this.setState({
-          profileImage: '',
+        thisContext.setState({
+          profileImage: imageSrc,
         })
       }
     })
