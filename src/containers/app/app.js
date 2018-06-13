@@ -21,6 +21,7 @@ const asyncAdmins = asyncLoader(() => require('../../containers/admins/admins'))
 const asyncSchools = asyncLoader(() => require('../../containers/schools/schools'))
 const asyncQuestions = asyncLoader(() => require('../../containers/questions/questions'))
 const asyncInterests = asyncLoader(() => require('../../containers/interests/interests'))
+const asyncLoadingFacts = asyncLoader(() => require('../../containers/loading-facts/loadingFacts'))
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class App extends Component {
             <PrivateRoute path="/schools" component={asyncSchools} />
             <PrivateRoute path="/questions" component={asyncQuestions} />
             <PrivateRoute path="/interests" component={asyncInterests} />
+            <PrivateRoute path="/loadingFacts" component={asyncLoadingFacts} />
             <Route component={asyncHome} />
           </Switch>
         </div>
