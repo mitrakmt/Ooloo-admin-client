@@ -8,7 +8,7 @@ import 'react-images-uploader/font.css'
 const MyUploader = ({ userId, loadPhoto }) => (
   <div className="myUploader">
     <ImagesUploader
-      url={`http://localhost:3001/api/image/profile/${userId}`}
+      url={`https://ooloo-api-dev.herokuapp.com/api/image/profile/${userId}`}
       optimisticPreviews
       multiple={false}
       onLoadEnd={err => {
