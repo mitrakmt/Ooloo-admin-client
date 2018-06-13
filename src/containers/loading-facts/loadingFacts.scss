@@ -1,0 +1,82 @@
+@import 'styles/_variables.scss';
+
+.loadingFacts {
+  &-addContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+
+    &-input {
+      width: 320px;
+      height: 35px;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    &-button {
+      width: 80px;
+      height: 48px;
+      font-size: 14px;
+      margin: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: 0;
+    }
+  }
+  &-listContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &-loadingFactContainer {
+      display: flex;
+      align-items: center;
+      width: 500px;
+      height: 75px;
+      background-color: #f1f1ef;
+      margin: 10px;
+      box-shadow: 1px 10px 20px 0px rgba(218, 215, 206, 0.8);
+      border-radius: 5px;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+      z-index: 2;
+
+      &-name {
+        align-items: center;
+        height: 20px;
+        font-size: 14px;
+        color: $warning-color;
+        padding-left: 15px;
+        border-left: 3px solid $warning-color;
+        font-family: $font-stack;
+      }
+
+      &-delete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        background: #f1f1ef;
+        margin-left: auto;
+        margin-right: 20px;
+        border-radius: 50%;
+        transition-duration: 0.2s;
+        cursor: pointer;
+        &:hover {
+          color: #f1f1ef;
+          background: rgb(42, 72, 107);
+          background: -moz-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+          background: -webkit-linear-gradient(left, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+          background: linear-gradient(to right, rgba(42, 72, 107, 1) 0%, rgba(80, 122, 167, 1) 100%);
+        }
+      }
+    }
+  }
+}
