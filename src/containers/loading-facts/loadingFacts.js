@@ -24,6 +24,7 @@ class LoadingFacts extends Component {
   }
 
   getLoadingFacts = () => {
+    // imported util to getLoadingFacts
     getLoadingFacts().then(loadingFacts => {
       this.setState({
         loadingFacts,
@@ -37,6 +38,7 @@ class LoadingFacts extends Component {
     if (!loadingFact) {
       return
     }
+    // imported util to addLoadingFact
     addLoadingFact(loadingFact).then(res => {
       if (res.error) {
         return
@@ -53,6 +55,7 @@ class LoadingFacts extends Component {
     this.setState({
       loadingFacts: copied,
     })
+    // imported util to deleteLoadingFact
     deleteLoadingFact(id).then(res => {
       if (res.error) {
         this.setState({
