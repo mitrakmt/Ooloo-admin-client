@@ -57,6 +57,13 @@ class Header extends Component {
               </Link>
             </div>
           )}
+          {this.props.auth.profile && (
+            <div className="header-navLinks-row">
+              <Link to={'/loadingFacts'}>
+                <p className="header-navLinks-text">Loading Facts</p>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="header-authActions">
           {this.props.auth.profile ? (

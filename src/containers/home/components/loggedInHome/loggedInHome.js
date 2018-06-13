@@ -17,6 +17,9 @@ const LoggedInHome = ({ username }) => (
         <Link to="/schools">Schools</Link>
       </p>
       <p className="loggedInHome-buttons-button">
+        <Link to="/loadingFacts">Loading Facts</Link>
+      </p>
+      <p className="loggedInHome-buttons-button">
         <Link to="/admins">Admins</Link>
       </p>
     </div>
