@@ -2,7 +2,7 @@ import { request } from './api'
 
 export function getQuestions(filters) {
   let queryUrl = '/admin/question?'
-  if (filters.topics) {
+  if (filters.topics.length > 0) {
     queryUrl += `topics=${filters.topics}&`
   }
   if (filters.createdBy) {

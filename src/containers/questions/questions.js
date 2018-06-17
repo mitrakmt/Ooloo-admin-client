@@ -28,6 +28,7 @@ class Questions extends Component {
       filterCreatedBy: null,
       availableInterests: [],
       difficulty: '',
+      difficultyOptions: [{ value: 1, label: 'Easy' }, { value: 2, label: 'Medium' }, { value: 3, label: 'Hard' }],
       image: null,
       interests: {},
       questions: [],
@@ -144,6 +145,28 @@ class Questions extends Component {
     this.setState({
       [event.target.id]: event.target.value,
     })
+  }
+
+  updateFilter = event => {
+    this.setState(
+      {
+        [event.target.id]: event.target.value,
+      },
+      () => {
+        this.getQuestions()
+      },
+    )
+  }
+
+  updateFilterTopics = event => {
+    this.setState(
+      {
+        filterTopics: [parseInt(event.target.value)],
+      },
+      () => {
+        this.getQuestions()
+      },
+    )
   }
 
   /**
@@ -272,31 +295,48 @@ class Questions extends Component {
           <div className="questions-listContainer-filters">
             <div className="questions-listContainer-filters-category">
               <h5>Difficulty</h5>
-              <div>
-                <h5>Easy</h5>
-              </div>
-              <div>
-                <h5>Medium</h5>
-              </div>
-              <div>
-                <h5>Hard</h5>
-              </div>
+              <select
+                className="questions-listContainer-filters-category-select"
+                id="filterDifficulty"
+                onChange={this.updateFilter}
+              >
+                <option value={null}>Select</option>
+                {this.state.difficultyOptions.map(difficulty => (
+                  <option value={difficulty.value} key={`filterDifficulty${difficulty.value}${difficulty.label}`}>
+                    {difficulty.label}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="questions-listContainer-filters-category">
               <h5>Topic</h5>
-              {this.state.availableInterests.map(topic => (
-                <div>
-                  <h5>{topic.name}</h5>
-                </div>
-              ))}
+              <select
+                className="questions-listContainer-filters-category-select"
+                id="filterTopics"
+                onChange={this.updateFilterTopics}
+              >
+                <option value={null}>Select</option>
+                {this.state.availableInterests.map(topic => (
+                  <option value={topic.id} key={`filterTopics${topic.id}${topic.name}`}>
+                    {topic.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="questions-listContainer-filters-category">
               <h5>Created By</h5>
-              {this.state.admins.map(admin => (
-                <div>
-                  <h5>{admin.username}</h5>
-                </div>
-              ))}
+              <select
+                className="questions-listContainer-filters-category-select"
+                id="filterCreatedBy"
+                onChange={this.updateFilter}
+              >
+                <option value={null}>Select</option>
+                {this.state.admins.map(admin => (
+                  <option value={admin.id} key={`filterCreatedBy${admin.id}${admin.usernmae}`}>
+                    {admin.username}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           {this.state.questions.map((question, index) => (
