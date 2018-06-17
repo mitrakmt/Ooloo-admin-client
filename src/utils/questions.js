@@ -1,8 +1,18 @@
 import { request } from './api'
 
-export function getQuestions() {
+export function getQuestions(filters) {
+  let queryUrl = '/admin/question?'
+  if (filters.topics) {
+    queryUrl += `topics=${filters.topics}&`
+  }
+  if (filters.createdBy) {
+    queryUrl += `createdBy=${filters.createdBy}&`
+  }
+  if (filters.difficulty) {
+    queryUrl += `difficulty=${filters.difficulty}`
+  }
   const config = {
-    url: '/admin/question',
+    url: queryUrl,
     method: 'GET',
   }
 

@@ -179,6 +179,15 @@
     align-items: center;
     width: 100%;
 
+    &-filters {
+      display: flex;
+      width: 60%;
+      justify-content: space-between;
+
+      &-category {
+      }
+    }
+
     &-questionContainer {
       display: flex;
       align-items: center;

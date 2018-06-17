@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { getQuestions, addQuestion, deleteQuestion } from 'utils/questions'
+import { getAdmins } from 'utils/admins'
 import { getInterests } from 'utils/interests'
 
 import FilteredMultiSelect from 'react-filtered-multiselect'
+import _ from 'lodash'
 
 import './questions.css'
 
@@ -14,12 +16,16 @@ class Questions extends Component {
     super(props, context)
 
     this.state = {
+      admins: [],
       correctAnswer: '',
       answers: [],
       answer1: '',
       answer2: '',
       answer3: '',
       answer4: '',
+      filterTopics: [],
+      filterDifficulty: null,
+      filterCreatedBy: null,
       availableInterests: [],
       difficulty: '',
       image: null,
@@ -42,10 +48,24 @@ class Questions extends Component {
       })
     })
     this.getQuestions()
+
+    getAdmins().then(admins => {
+      this.setState({
+        admins,
+      })
+    })
   }
 
   getQuestions = () => {
-    getQuestions().then(questions => {
+    let filters = {
+      topics: this.state.filterTopics,
+      difficulty: this.state.filterDifficulty,
+      createdBy: this.state.filterCreatedBy,
+    }
+    let finalFilters = _.pickBy(filters, item => {
+      return !_.isUndefined(item)
+    })
+    getQuestions(finalFilters).then(questions => {
       this.setState({
         questions,
       })
@@ -248,6 +268,37 @@ class Questions extends Component {
           </div>
         )}
         <div className="questions-listContainer">
+          <h3>Filters</h3>
+          <div className="questions-listContainer-filters">
+            <div className="questions-listContainer-filters-category">
+              <h5>Difficulty</h5>
+              <div>
+                <h5>Easy</h5>
+              </div>
+              <div>
+                <h5>Medium</h5>
+              </div>
+              <div>
+                <h5>Hard</h5>
+              </div>
+            </div>
+            <div className="questions-listContainer-filters-category">
+              <h5>Topic</h5>
+              {this.state.availableInterests.map(topic => (
+                <div>
+                  <h5>{topic.name}</h5>
+                </div>
+              ))}
+            </div>
+            <div className="questions-listContainer-filters-category">
+              <h5>Created By</h5>
+              {this.state.admins.map(admin => (
+                <div>
+                  <h5>{admin.username}</h5>
+                </div>
+              ))}
+            </div>
+          </div>
           {this.state.questions.map((question, index) => (
             <div className="questions-listContainer-questionContainer" key={`questionsList-${question.id}`}>
               <div className="fullWidth">
