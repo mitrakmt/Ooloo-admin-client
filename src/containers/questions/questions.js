@@ -161,7 +161,7 @@ class Questions extends Component {
   updateFilterTopics = event => {
     this.setState(
       {
-        filterTopics: [parseInt(event.target.value)],
+        filterTopics: [parseInt(event.target.value, 10)],
       },
       () => {
         this.getQuestions()
