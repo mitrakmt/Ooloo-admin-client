@@ -139,7 +139,11 @@ class Profile extends Component {
         <div className="account-container">
           {this.state.profileImage ? (
             <div className="account-container-profilePictureContainer">
-              <img className="account-container-profilePictureContainer-image" src={this.state.profileImage} />
+              <img
+                alt="profile"
+                className="account-container-profilePictureContainer-image"
+                src={this.state.profileImage}
+              />
               <button
                 className="account-container-profilePictureContainer-deleteButton"
                 onClick={this.deleteProfileImage}

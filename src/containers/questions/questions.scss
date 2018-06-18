@@ -179,6 +179,27 @@
     align-items: center;
     width: 100%;
 
+    &-filters {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+
+      &-category {
+        &-select {
+          display: inline-block;
+          width: 130px;
+          font-size: 12;
+          font-weight: normal;
+          color: #172b4d;
+          background-color: #ebecf0;
+          padding: 10px;
+          border-radius: 2em;
+          line-height: 1;
+          text-align: center;
+        }
+      }
+    }
+
     &-questionContainer {
       display: flex;
       align-items: center;
