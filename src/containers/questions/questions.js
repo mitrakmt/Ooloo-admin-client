@@ -339,6 +339,9 @@ class Questions extends Component {
               </select>
             </div>
           </div>
+          <div className="questions-listContainer-questionCount">
+            <h5>{this.state.questions.length} questions</h5>
+          </div>
           {this.state.questions.map((question, index) => (
             <div className="questions-listContainer-questionContainer" key={`questionsList-${question.id}`}>
               <div className="fullWidth">
