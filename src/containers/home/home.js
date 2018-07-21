@@ -18,6 +18,9 @@ class Home extends Component {
     return (
       <div className="home">
         {this.props.auth.profile ? <LoggedInHome username={this.props.username} /> : <LoggedOutHome />}
+        <div className="footer">
+          <p>Oxys Technologies © 2018</p>
+        </div>
       </div>
     )
   }
