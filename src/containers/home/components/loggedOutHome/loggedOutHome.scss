@@ -3,8 +3,22 @@
 .loggedOutHome {
   height: 100%;
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   &-heading {
     margin: 0;
+    margin-top: -150px;
+  }
+  &-secondaryHeading {
+    margin-top: 10px;
+  }
+  &-welcome {
+    margin-top: 30px;
+  }
+  &-logIn {
+    color: #53e3a6;
   }
 }
